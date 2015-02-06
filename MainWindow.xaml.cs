@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Kinect;
+using KinectMeasurementsLib;
 
 namespace Harley
 {
@@ -24,6 +25,20 @@ namespace Harley
         public MainWindow()
         {
             InitializeComponent();
+            Angle1.Text = TestKinectMeasurementsLib().ToString();
+        }
+
+        /// <summary>
+        /// Spaghetti code to test working of KinectMeasurementsLib
+        /// </summary>
+        public float TestKinectMeasurementsLib()
+        {
+            Vector3 vec1 = new Vector3(1,1,0);
+            Vector3 vec2 = new Vector3(1,0,0);
+            float angle = KinectMeasurementsTools.AngleBetweenTwoVectors(vec1, vec2);
+
+            return angle;
         }
     }
+
 }
