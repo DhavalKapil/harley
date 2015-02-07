@@ -61,21 +61,21 @@ namespace Harley
                     this.kinectSensor = potentialSensor;
                     break;
                 }
+            }
 
-                if (null != this.kinectSensor)
-                {
-                    // Turning on skeleton stream
-                    this.kinectSensor.SkeletonStream.Enable();
-                    this.kinectSensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
+            if (null != this.kinectSensor)
+            {
+                // Turning on skeleton stream
+                this.kinectSensor.SkeletonStream.Enable();
+                this.kinectSensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
 
-                    this.kinectSensor.Start();
-                }
+                this.kinectSensor.Start();
+            }
 
-                if (null == this.kinectSensor)
-                {
-                    // Connection is failed
-                    return;
-                }
+            if (null == this.kinectSensor)
+            {
+                // Connection is failed
+                return;
             }
         }
 
