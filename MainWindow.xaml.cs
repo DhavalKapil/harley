@@ -35,6 +35,11 @@ namespace Harley
         /// </summary>
         private TemplatedGestureDetector circleDetector;
 
+        /// <summary>
+        /// The speech object
+        /// </summary>
+        private Speech speech;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -50,9 +55,9 @@ namespace Harley
         private void InitializeKinect()
         {
 
-            circleDetector = new TemplatedGestureDetector("Circle", File.Create(@"C:\Users\Abhi\Projects\KinectToolbox\GesturesViewer\Data\circleKB.save"));
+            /*circleDetector = new TemplatedGestureDetector("Circle", File.Create(@"C:\Users\Abhi\Projects\KinectToolbox\GesturesViewer\Data\circleKB.save"));
             circleDetector.DisplayCanvas = videoCanvas;
-            circleDetector.OnGestureDetected += OnGesture;
+            circleDetector.OnGestureDetected += OnGesture;*/
 
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
@@ -77,6 +82,9 @@ namespace Harley
                 // Connection is failed
                 return;
             }
+
+            this.speech = new Speech(this.kinectSensor);
+            this.speech.Start();
         }
 
         /// <summary>
