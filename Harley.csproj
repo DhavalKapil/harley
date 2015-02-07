@@ -67,7 +67,6 @@
     </ApplicationDefinition>
     <Compile Include="Speech.cs" />
     <Compile Include="Star.cs" />
-    <Compile Include="Shape.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
