@@ -32,11 +32,21 @@ namespace Harley
         private const float MAX_SHOULDER_ANGLE = 135.0f;
 
         /// <summary>
+        /// Static variable to maintain the number of continuous successes
+        /// </summary>
+        private static int count = 0;
+
+        /// <summary>
+        /// The total no of continuous successes that would give a final success
+        /// </summary>
+        private const int COUNT_LIMIT = 20;
+
+        /// <summary>
         /// Function to check a paricular body whether it is a star or not
         /// </summary>
         /// <param name="skeleton"></param>
         /// <returns>Return's true if it is star shaped</returns>
-        public static bool CheckSkeleton(Skeleton skeleton)
+        private static bool CheckSkeleton(Skeleton skeleton)
         {
             // Checking if left elbow is straight
             float leftElbowAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ElbowLeft, JointType.WristLeft, JointType.ShoulderLeft);
@@ -67,6 +77,18 @@ namespace Harley
             }
 
             return true;
+        }
+
+        public static bool CheckStar(Skeleton skeleton)
+        {
+            if (CheckSkeleton(skeleton))
+                count++;
+            else
+                count = 0;
+
+            if (count == COUNT_LIMIT)
+                return true;
+            return false;
         }
     }
 }
