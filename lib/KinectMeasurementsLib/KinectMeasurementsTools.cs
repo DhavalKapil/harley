@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Kinect;
-using System.Drawing;
 
 namespace KinectMeasurementsLib
 {
@@ -15,45 +14,43 @@ namespace KinectMeasurementsLib
     {
         #region Distance
         /// <summary>
-        /// Returns the distance of tracked body from Kinect device
+        /// Returns the distance of tracked skeleton from Kinect device
         /// </summary>
-        /// <param name="body">Body</param>
+        /// <param name="skeleton">Skeleton</param>
         /// <returns>Distance in meters</returns>
-        public static double GetSkeletonDistance(this Body body)
+        public static double GetSkeletonDistance(this Skeleton skeleton)
         {
-            Joint spine = body.Joints[JointType.SpineMid];
-
-            return (spine.Position.X * spine.Position.X) +
-                   (spine.Position.Y * spine.Position.Y) +
-                   (spine.Position.Z * spine.Position.Z);
+            return (skeleton.Position.X * skeleton.Position.X) +
+                   (skeleton.Position.Y * skeleton.Position.Y) +
+                   (skeleton.Position.Z * skeleton.Position.Z);
         }
 
         /// <summary>
         /// Returns the distance of specific joint from Kinect device
         /// </summary>
-        /// <param name="body">Body</param>
+        /// <param name="skeleton">Skeleton</param>
         /// <param name="jointType">JointType</param>
         /// <returns>Distance in meters</returns>
-        public static double GetJointDistance(this Body body, JointType jointType)
+        public static double GetJointDistance(this Skeleton skeleton, JointType jointType)
         {
-            return (body.Joints[jointType].Position.X * body.Joints[jointType].Position.X) +
-                   (body.Joints[jointType].Position.Y * body.Joints[jointType].Position.Y) +
-                   (body.Joints[jointType].Position.Z * body.Joints[jointType].Position.Z);
+            return (skeleton.Joints[jointType].Position.X * skeleton.Joints[jointType].Position.X) +
+                   (skeleton.Joints[jointType].Position.Y * skeleton.Joints[jointType].Position.Y) +
+                   (skeleton.Joints[jointType].Position.Z * skeleton.Joints[jointType].Position.Z);
         }
 
         /// <summary>
         /// Returns the distance between two specific joints
         /// </summary>
-        /// <param name="body">Body</param>
+        /// <param name="skeleton">Skeleton</param>
         /// <param name="firstJointType">JointType</param>
         /// <param name="secondJointType">JointType</param>
         /// <returns>Distance in meters</returns>
-        public static double GetDistanceBetweenJoints(this Body body, JointType firstJointType, JointType secondJointType)
+        public static double GetDistanceBetweenJoints(this Skeleton skeleton, JointType firstJointType, JointType secondJointType)
         {
             return Math.Sqrt(
-                Math.Pow((body.Joints[firstJointType].Position.X - body.Joints[secondJointType].Position.X), 2) +
-                Math.Pow((body.Joints[firstJointType].Position.Y - body.Joints[secondJointType].Position.Y), 2) +
-                Math.Pow((body.Joints[firstJointType].Position.Z - body.Joints[secondJointType].Position.Z), 2)
+                Math.Pow((skeleton.Joints[firstJointType].Position.X - skeleton.Joints[secondJointType].Position.X), 2) +
+                Math.Pow((skeleton.Joints[firstJointType].Position.Y - skeleton.Joints[secondJointType].Position.Y), 2) +
+                Math.Pow((skeleton.Joints[firstJointType].Position.Z - skeleton.Joints[secondJointType].Position.Z), 2)
                 );
         }
         #endregion
@@ -62,16 +59,16 @@ namespace KinectMeasurementsLib
         /// <summary>
         /// Measure angle between joints
         /// </summary>
-        /// <param name="body">Body</param>
+        /// <param name="skeleton">Skeleton</param>
         /// <param name="centerJoint">joint which is in the middle</param>
         /// <param name="topJoint">joint which is on top</param>
         /// <param name="bottomJoint">joint which is on bottom</param>
         /// <returns>Angle in degrees</returns>
-        public static float AngleBetweenJoints(this Body body, JointType centerJoint, JointType topJoint, JointType bottomJoint)
+        public static float AngleBetweenJoints(this Skeleton skeleton, JointType centerJoint, JointType topJoint, JointType bottomJoint)
         {
-            Vector3 centerJointCoord = new Vector3(body.Joints[centerJoint].Position.X, body.Joints[centerJoint].Position.Y, body.Joints[centerJoint].Position.Z);
-            Vector3 topJointCoord = new Vector3(body.Joints[topJoint].Position.X, body.Joints[topJoint].Position.Y, body.Joints[topJoint].Position.Z);
-            Vector3 bottomJointCoord = new Vector3(body.Joints[bottomJoint].Position.X, body.Joints[bottomJoint].Position.Y, body.Joints[bottomJoint].Position.Z);
+            Vector3 centerJointCoord = new Vector3(skeleton.Joints[centerJoint].Position.X, skeleton.Joints[centerJoint].Position.Y, skeleton.Joints[centerJoint].Position.Z);
+            Vector3 topJointCoord = new Vector3(skeleton.Joints[topJoint].Position.X, skeleton.Joints[topJoint].Position.Y, skeleton.Joints[topJoint].Position.Z);
+            Vector3 bottomJointCoord = new Vector3(skeleton.Joints[bottomJoint].Position.X, skeleton.Joints[bottomJoint].Position.Y, skeleton.Joints[bottomJoint].Position.Z);
 
             Vector3 firstVector = bottomJointCoord - centerJointCoord;
             Vector3 secondVector = topJointCoord - centerJointCoord;
@@ -99,37 +96,36 @@ namespace KinectMeasurementsLib
         #endregion
 
         /// <summary>
-        /// Returns true if tracked Body has jumped
+        /// Returns true if tracked Skeleton has jumped
         /// </summary>
-        /// <param name="body"></param>
+        /// <param name="skeleton"></param>
         /// <returns></returns>
-        public static bool HasJumped(this Body body)
+        public static bool HasJumped(this Skeleton skeleton)
         {
-            CameraSpacePoint position = body.Joints[JointType.FootLeft].Position;
-            if (position.X > 0)
+            if (skeleton.Joints[JointType.FootLeft].Position.X > 0)
                 return true;
             else return false;
         }
 
-        #region Body height
+        #region Skeleton height
         // from http://www.codeproject.com/Articles/380152/Kinect-for-Windows-Find-user-height-accurately
 
-        public static double Height(this Body body)
+        public static double Height(this Skeleton skeleton)
         {
             const double HEAD_DIVERGENCE = 0.1;
 
-            var head = body.Joints[JointType.Head];
-            var neck = body.Joints[JointType.Neck];
-            var spine = body.Joints[JointType.SpineMid];
-            var waist = body.Joints[JointType.SpineBase];
-            var hipLeft = body.Joints[JointType.HipLeft];
-            var hipRight = body.Joints[JointType.HipRight];
-            var kneeLeft = body.Joints[JointType.KneeLeft];
-            var kneeRight = body.Joints[JointType.KneeRight];
-            var ankleLeft = body.Joints[JointType.AnkleLeft];
-            var ankleRight = body.Joints[JointType.AnkleRight];
-            var footLeft = body.Joints[JointType.FootLeft];
-            var footRight = body.Joints[JointType.FootRight];
+            var head = skeleton.Joints[JointType.Head];
+            var neck = skeleton.Joints[JointType.ShoulderCenter];
+            var spine = skeleton.Joints[JointType.Spine];
+            var waist = skeleton.Joints[JointType.HipCenter];
+            var hipLeft = skeleton.Joints[JointType.HipLeft];
+            var hipRight = skeleton.Joints[JointType.HipRight];
+            var kneeLeft = skeleton.Joints[JointType.KneeLeft];
+            var kneeRight = skeleton.Joints[JointType.KneeRight];
+            var ankleLeft = skeleton.Joints[JointType.AnkleLeft];
+            var ankleRight = skeleton.Joints[JointType.AnkleRight];
+            var footLeft = skeleton.Joints[JointType.FootLeft];
+            var footRight = skeleton.Joints[JointType.FootRight];
 
             // Find which leg is tracked more accurately.
             int legLeftTrackedJoints = NumberOfTrackedJoints(hipLeft, kneeLeft, ankleLeft, footLeft);
@@ -167,7 +163,7 @@ namespace KinectMeasurementsLib
 
             foreach (var joint in joints)
             {
-                if (joint.TrackingState == Microsoft.Kinect.TrackingState.Tracked)
+                if (joint.TrackingState == JointTrackingState.Tracked)
                 {
                     trackedJoints++;
                 }
