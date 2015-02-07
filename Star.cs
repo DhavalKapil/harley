@@ -28,31 +28,31 @@ namespace Harley
         /// <summary>
         /// Function to check a paricular body whether it is a star or not
         /// </summary>
-        /// <param name="body"></param>
+        /// <param name="skeleton"></param>
         /// <returns>Return's true if it is star shaped</returns>
-        public static bool CheckBody(Body body)
+        public static bool CheckSkeleton(Skeleton skeleton)
         {
             // Checking if left elbow is straight
-            if (KinectMeasurementsTools.AngleBetweenJoints(body, JointType.ElbowLeft, JointType.WristLeft, JointType.ShoulderLeft) > ELBOW_ANGLE_THRESHOLD)
+            if (KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ElbowLeft, JointType.WristLeft, JointType.ShoulderLeft) > ELBOW_ANGLE_THRESHOLD)
             {
                 return false;
             }
 
             // Checking if right elbow is straight
-            if (KinectMeasurementsTools.AngleBetweenJoints(body, JointType.ElbowRight, JointType.WristRight, JointType.ShoulderRight) > ELBOW_ANGLE_THRESHOLD)
+            if (KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ElbowRight, JointType.WristRight, JointType.ShoulderRight) > ELBOW_ANGLE_THRESHOLD)
             {
                 return false;
             }
 
             // Checking if left should angle is correct
-            float leftShoulderAngle = KinectMeasurementsTools.AngleBetweenJoints(body, JointType.ShoulderLeft, JointType.HipLeft, JointType.ElbowLeft);
+            float leftShoulderAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ShoulderLeft, JointType.HipLeft, JointType.ElbowLeft);
             if (leftShoulderAngle<MIN_SHOULDER_ANGLE && leftShoulderAngle>MAX_SHOULDER_ANGLE)
             {
                 return false;
             }
 
             // Checking if right should angle is correct
-            float rightShoulderAngle = KinectMeasurementsTools.AngleBetweenJoints(body, JointType.ShoulderRight, JointType.HipRight, JointType.ElbowRight);
+            float rightShoulderAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ShoulderRight, JointType.HipRight, JointType.ElbowRight);
             if (rightShoulderAngle < MIN_SHOULDER_ANGLE && rightShoulderAngle > MAX_SHOULDER_ANGLE)
             {
                 return false;
