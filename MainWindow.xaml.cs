@@ -48,9 +48,7 @@ namespace Harley
         public MainWindow()
         {
             InitializeComponent();
-
-            Angle1.Text = TestKinectMeasurementsLib().ToString();
-
+            
             InitializeKinect();
         }
 
@@ -59,10 +57,12 @@ namespace Harley
         /// </summary>
         private void InitializeKinect()
         {
-
-            circleDetector = new TemplatedGestureDetector("Circle", File.Create(@"C:\Users\Abhi\Projects\KinectToolbox\GesturesViewer\Data\circleKB.save"));
-            circleDetector.DisplayCanvas = videoCanvas;
-            circleDetector.OnGestureDetected += OnGesture;
+            using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
+            {
+                this.circleDetector = new TemplatedGestureDetector("Circle", recordStream);
+                this.circleDetector.DisplayCanvas = videoCanvas;
+                this.circleDetector.OnGestureDetected += OnHandGesture;
+            }
 
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
@@ -166,10 +166,9 @@ namespace Harley
             this.circleDetector.Add(skeleton.Joints[JointType.HandRight].Position, this.kinectSensor);
         }
 
-        private void OnGesture(string gesture)
+        private void OnHandGesture(string gesture)
         {
-            Trace.WriteLine("Circle detected!");
-            Angle1.Text = "Circle gesture detected";
+            Trace.WriteLine("Circle gesture detected!");
         }
 
         /// <summary>
