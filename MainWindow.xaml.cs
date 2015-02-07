@@ -51,6 +51,7 @@ namespace Harley
         {
 
             circleDetector = new TemplatedGestureDetector("Circle", File.Create(@"C:\Users\Abhi\Projects\KinectToolbox\GesturesViewer\Data\circleKB.save"));
+            circleDetector.DisplayCanvas = videoCanvas;
             circleDetector.OnGestureDetected += OnGesture;
 
             foreach (var potentialSensor in KinectSensor.KinectSensors)
