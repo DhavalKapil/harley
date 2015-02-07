@@ -49,8 +49,8 @@ namespace Harley
         /// </summary>
         private void InitializeKinect()
         {
-
-            circleDetector = new TemplatedGestureDetector("Circle", File.Create(@"C:\Users\Abhi\Projects\KinectToolbox\GesturesViewer\Data\circleKB.save"));
+            string circleKBPath = System.IO.Path.Combine(Environment.CurrentDirectory, @"data\circleKB.save");
+            circleDetector = new TemplatedGestureDetector("Circle", File.Create(circleKBPath));
             circleDetector.DisplayCanvas = videoCanvas;
             circleDetector.OnGestureDetected += OnGesture;
 

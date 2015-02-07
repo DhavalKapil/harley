@@ -5,9 +5,7 @@
     <Grid>
         <TextBox x:Name="Angle1" HorizontalAlignment="Left" VerticalAlignment="Top" Height="23" TextWrapping="Wrap" Text="TextBox" Width="120"/>
         <Viewbox Grid.Row="1" Stretch="Uniform" HorizontalAlignment="Center">
-            <Grid>
-                <Canvas x:Name="videoCanvas" HorizontalAlignment="Left" Height="100" Margin="192,141,0,0" VerticalAlignment="Top" Width="100"/>
-            </Grid>
+            <Canvas x:Name="videoCanvas" HorizontalAlignment="Left" Height="100" Margin="192,141,0,0" VerticalAlignment="Top" Width="100"/>
         </Viewbox>
     </Grid>
 </Window>
