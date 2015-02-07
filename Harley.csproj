@@ -37,6 +37,10 @@
     <StartupObject>Harley.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Kinect.Toolbox, Version=1.3.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\KinectToolbox\bin\Debug\Kinect.Toolbox.dll</HintPath>
+    </Reference>
     <Reference Include="KinectMeasurementsLib">
       <HintPath>lib\KinectMeasurementsLib\obj\Debug\KinectMeasurementsLib.dll</HintPath>
     </Reference>
@@ -63,6 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="Speech.cs" />
     <Compile Include="Star.cs" />
+    <Compile Include="Shape.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

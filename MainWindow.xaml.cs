@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Diagnostics;
 using Microsoft.Kinect;
+using Kinect.Toolbox;
 using KinectMeasurementsLib;
 
 namespace Harley
@@ -38,6 +40,11 @@ namespace Harley
         /// </summary>
         private BodyFrameReader bodyReader;
 
+        /// <summary>
+        /// The circle gesture recognizer
+        /// </summary>
+        private TemplatedGestureDetector circleDetector;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -56,6 +63,9 @@ namespace Harley
         private void InitializeKinect()
         {
             kinectSensor = KinectSensor.GetDefault();
+
+            circleDetector = new TemplatedGestureDetector("Circle", File.Create(@"C:\Users\Abhi\Projects\KinectToolbox\GesturesViewer\Data\circleKB.save"));
+            circleDetector.OnGestureDetected += OnGesture;
 
             // Initialize Body
             InitializeBody();
@@ -118,6 +128,11 @@ namespace Harley
         private void HandleBody(Body body)
         {
 
+        }
+
+        private void OnGesture(string gesture)
+        {
+            Angle1.Text = "Circle gesture detected";
         }
 
         /// <summary>
