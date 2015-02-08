@@ -31,16 +31,17 @@ namespace Harley
         /// <summary>
         /// List of grammer that are recognizable
         /// </summary>
-        private string[] grammarList = {"ready", "go"};
+        private string[] grammarList;
 
         /// <summary>
         /// Constructor
         /// </summary>
-        public Speech(KinectSensor kinectSensor)
+        public Speech(KinectSensor kinectSensor, string[] grammarList)
         {
             speechSynthesizer = new SpeechSynthesizer();
 
             this.kinectSensor = kinectSensor;
+            this.grammarList = grammarList;
 
             speechRecognizer = CreateSpeechRecognizer();
         }
@@ -90,7 +91,7 @@ namespace Harley
         }
 
         /// <summary>
-        /// Function to start streaing audio
+        /// Function to start streaming audio and returns the string detected
         /// </summary>
         public void Start()
         {
@@ -135,6 +136,7 @@ namespace Harley
                 grammar.Add(gm);
             }
 
+
             //set culture - language, country/region
             var gb = new GrammarBuilder { Culture = ri.Culture };
             gb.Append(grammar);
@@ -167,7 +169,7 @@ namespace Harley
         /// <param name="e"></param>
         private void SreSpeechHypothesized(object sender, SpeechHypothesizedEventArgs e)
         {
-            Trace.WriteLine("Hypothesized: " + e.Result.Text + " " + e.Result.Confidence);
+            //Trace.WriteLine("Hypothesized: " + e.Result.Text + " " + e.Result.Confidence);
         }
 
         /// <summary>
@@ -181,7 +183,8 @@ namespace Harley
             //the more accurate it will have to be, lower it if it is not recognizing you
             if (e.Result.Confidence < .4)
             {
-                Trace.WriteLine("Rejected: " + e.Result);
+                //Trace.WriteLine("Rejected: " + e.Result);
+                return;
             }
 
             //and finally, here we set what we want to happen when 

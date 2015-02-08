@@ -50,6 +50,11 @@ namespace Harley
         /// </summary>
         private byte[] colorPixels;
 
+        /// <summary>
+        /// Readonly array of word list to recognize
+        /// </summary>
+        private readonly string[] grammar = { "some", "options" };
+
         public FaceRecognitionActivityWindow()
         {
             InitializeComponent();
@@ -108,7 +113,7 @@ namespace Harley
                 return;
             }
 
-            this.speech = new Speech(this.kinectSensor);
+            this.speech = new Speech(this.kinectSensor, grammar);
             this.speech.Start();
         }
 

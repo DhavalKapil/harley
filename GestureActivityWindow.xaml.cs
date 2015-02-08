@@ -49,6 +49,11 @@ namespace Harley
         /// </summary>
         private byte[] colorPixels;
 
+        /// <summary>
+        /// Readonly array of word list to recognize
+        /// </summary>
+        private readonly string[] grammar = { "pro", "bitch" };
+
         public GestureActivityWindow()
         {
             InitializeComponent();
@@ -61,12 +66,12 @@ namespace Harley
         /// </summary>
         private void InitializeKinect()
         {
-           using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
+           /*using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
             {
                 this.circleDetector = new TemplatedGestureDetector("Circle", recordStream);
                 this.circleDetector.DisplayCanvas = videoCanvas;
                 this.circleDetector.OnGestureDetected += OnHandGesture;
-            }
+            }*/
 
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
@@ -107,7 +112,7 @@ namespace Harley
                 return;
             }
 
-            this.speech = new Speech(this.kinectSensor);
+            this.speech = new Speech(this.kinectSensor, grammar);
             this.speech.Start();
         }
 
