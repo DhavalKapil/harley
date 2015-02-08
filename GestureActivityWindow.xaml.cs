@@ -75,7 +75,6 @@ namespace Harley
 
         public GestureActivityWindow()
         {
-
             // set current level number
             this.levelNumber = 0;
 
@@ -89,14 +88,14 @@ namespace Harley
 
             this.levelForTimer = this.currentLevel;
 
+            InitializeComponent();
+
+            InitializeKinect();
+
             timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(PromptUserForGesture);
             timer.Interval = PROMPT_INTERVAL; // in milliseconds
             timer.Start();
-
-            InitializeComponent();
-
-            InitializeKinect();
 
             this.playNextLevel(CIRCLE);
         }
@@ -105,7 +104,7 @@ namespace Harley
         {
             if (this.levelForTimer == this.currentLevel)
             {
-                this.speech.Speak("You can do better. Trying drawing a" + this.currentLevel + " using your hand as shown on the screen.");
+                this.speech.Speak("You can do better. Try to draw a" + this.currentLevel + " using your hand as shown.");
             }
             else
             { 
@@ -165,7 +164,7 @@ namespace Harley
             }
 
             this.speech = new Speech(this.kinectSensor, grammar);
-            this.speech.Start();
+            //this.speech.Start();
         }
 
         /// <summary>
@@ -262,9 +261,7 @@ namespace Harley
 
         private void playNextLevel(string level)
         {
-            Trace.WriteLine("A!");
             this.speech.Speak("A " + level + " is shown, try drawing it by moving your right hand.");
-            Trace.WriteLine("B!");
         }
 
         /// <summary>
@@ -272,7 +269,7 @@ namespace Harley
         /// </summary>
         private void Window_Closing()
         {
-            this.kinectSensor.Stop();
+            // this.kinectSensor.Stop();
         }
     }
 }

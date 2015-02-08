@@ -64,8 +64,8 @@ namespace Harley
         {
             Window faceRecogWindow = new FaceRecognitionActivityWindow();
             App.Current.MainWindow = faceRecogWindow;
-            faceRecogWindow.Show();
             this.Close();
+            faceRecogWindow.Show();
         }
 
         /// <summary>
@@ -75,8 +75,8 @@ namespace Harley
         {
             Window gestureWindow = new GestureActivityWindow();
             App.Current.MainWindow = gestureWindow;
-            gestureWindow.Show();
             this.Close();
+            gestureWindow.Show();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
