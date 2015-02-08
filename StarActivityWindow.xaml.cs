@@ -155,7 +155,6 @@ namespace Harley
                 // Connection is failed
                 return;
             }
-            Trace.WriteLine("S");
             this.speech = new Speech(this.kinectSensor, grammar);
             this.speech.Start();
         }
@@ -231,7 +230,6 @@ namespace Harley
         {
             if (!success && CheckStar(skeleton))
             {
-                Trace.WriteLine("S");
                 timer.Stop();
                 this.speech.RestartSpeak();
                 this.speech.Speak("Congratulations for finishing this level!");
@@ -288,7 +286,7 @@ namespace Harley
                 count++;
             else
                 count = 0;
-            Trace.WriteLine("ECHO" + count);
+
             if (count == COUNT_LIMIT)
                 return true;
             return false;
