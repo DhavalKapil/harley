@@ -37,11 +37,30 @@ namespace Harley
 
         public MainWindow()
         {
-            Window window = new Window1();
+            InitializeComponent();
+
+            this.SwitchToFaceRecognitionActivityWindow();
+
+            // Initialize speech recognition here
+        }
+
+        private void SwitchToFaceRecognitionActivityWindow()
+        {
+            Window window = new FaceRecognitionActivityWindow();
             App.Current.MainWindow = window;
             window.Show();
             this.Close();
-            InitializeComponent();            
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Clean();
+        }
+
+        private void Clean()
+        {
+            // All cleanup work goes here
+            // this includes uninitializing Sensors
         }
     }
 

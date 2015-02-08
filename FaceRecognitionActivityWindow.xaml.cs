@@ -20,9 +20,9 @@ using KinectMeasurementsLib;
 namespace Harley
 {
     /// <summary>
-    /// Interaction logic for Window1.xaml
+    /// Interaction logic for SwitchToFaceRecognitionActivityWindow.xaml
     /// </summary>
-    public partial class Window1 : Window
+    public partial class FaceRecognitionActivityWindow : Window
     {
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace Harley
         /// </summary>
         private byte[] colorPixels;
 
-        public Window1()
+        public FaceRecognitionActivityWindow()
         {
             InitializeComponent();
 
