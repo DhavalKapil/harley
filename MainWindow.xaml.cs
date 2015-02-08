@@ -39,7 +39,8 @@ namespace Harley
         {
             InitializeComponent();
 
-            this.SwitchToFaceRecognitionActivityWindow();
+            this.SwitchToGestureActivityWindow();
+            //this.SwitchToFaceRecognitionActivityWindow();
 
             // Initialize speech recognition here
         }

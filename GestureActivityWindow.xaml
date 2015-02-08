@@ -24,16 +24,16 @@
             </Grid>
         </Viewbox>
         <Label x:Name="StarJumpLabel" Content="Star Jump" HorizontalAlignment="Left" Margin="12,106,0,0" VerticalAlignment="Top" Width="122" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Background="#00588537" Height="39"/>
-        <Label x:Name="ShapeDrawingLabel" Content="Shape Drawing" HorizontalAlignment="Left" Margin="12,162,0,0" VerticalAlignment="Top" Width="150" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39"/>
-        <Label x:Name="FacialExpressionLabel" Content="Facial Expression" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Width="175" Foreground="#FF588537" FontSize="22" FontFamily="Segoe UI Light" Grid.ColumnSpan="2" Height="39"/>
+        <Label x:Name="ShapeDrawingLabel" Content="Shape Drawing" HorizontalAlignment="Left" Margin="12,162,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF588537" FontSize="22" FontFamily="Segoe UI Light" Height="39"/>
+        <Label x:Name="FacialExpressionLabel" Content="Facial Expression" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Grid.ColumnSpan="2" Height="39"/>
         <Label x:Name="HurdleJumpLabel" Content="Hurdle Jump" HorizontalAlignment="Left" Margin="12,272,0,0" VerticalAlignment="Top" Width="140" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39"/>
         <Rectangle Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,106,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,114,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\happy.png"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,114,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\circle.png"/>
         <Rectangle Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,194,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Rectangle Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,282,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
-        <Label Content="Happy" Grid.Column="2" HorizontalAlignment="Left" Margin="811,161,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Label Content="Sad" Grid.Column="2" HorizontalAlignment="Left" Margin="819,250,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,205,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\sad.png"/>
+        <Label Content="Circle" Grid.Column="2" HorizontalAlignment="Left" Margin="812,161,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
+        <Label Content="Triangle" Grid.Column="2" HorizontalAlignment="Left" Margin="809,250,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,205,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\triangle.png"/>
         <Label Content="Angry" Grid.Column="2" HorizontalAlignment="Left" Margin="811,338,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
         <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,294,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\angry.png"/>
     </Grid>
