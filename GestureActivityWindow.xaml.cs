@@ -90,9 +90,7 @@ namespace Harley
 
             InitializeComponent();
 
-            Trace.WriteLine("A");
             InitializeKinect();
-            Trace.WriteLine("B");
 
             timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(PromptUserForGesture);
@@ -137,7 +135,6 @@ namespace Harley
 
             if (null != this.kinectSensor)
             {
-                Trace.WriteLine("abcd");
                 // Turning on skeleton stream
                 this.kinectSensor.SkeletonStream.Enable();
                 this.kinectSensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
@@ -166,10 +163,8 @@ namespace Harley
                 return;
             }
 
-            Trace.WriteLine("a");
             this.speech = new Speech(this.kinectSensor, grammar);
             //this.speech.Start();
-            Trace.WriteLine("b");
         }
 
         /// <summary>
@@ -266,9 +261,7 @@ namespace Harley
 
         private void playNextLevel(string level)
         {
-            Trace.WriteLine("A!");
             this.speech.Speak("A " + level + " is shown, try drawing it by moving your right hand.");
-            Trace.WriteLine("B!");
         }
 
         /// <summary>
