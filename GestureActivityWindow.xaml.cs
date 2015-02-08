@@ -35,6 +35,8 @@ namespace Harley
         /// </summary>
         private TemplatedGestureDetector circleDetector;
 
+        private SwipeGestureDetector gestureDetector;
+
         /// <summary>
         /// The speech object
         /// </summary>
@@ -49,12 +51,13 @@ namespace Harley
         private List<string> levels;
 
         private const string CIRCLE = "Circle";
-        private const string TRIANGLE = "Triangle";
+        private const string SWIPE_LEFT = "SwipeToLeft";
+        private const string SWIPE_RIGHT = "SwipeToRight";
         
         /// <summary>
         /// Prompt interval for user inactivity
         /// </summary>
-        private const int PROMPT_INTERVAL = 4000;
+        private const int PROMPT_INTERVAL = 7000;
 
         private Timer timer;
 
@@ -84,7 +87,8 @@ namespace Harley
             // update all available levels
             levels = new List<string>();
             levels.Add(CIRCLE);
-            levels.Add(TRIANGLE);
+            levels.Add(SWIPE_LEFT);
+            levels.Add(SWIPE_RIGHT);
 
             this.levelForTimer = this.currentLevel;
 
@@ -104,7 +108,7 @@ namespace Harley
         {
             if (this.levelForTimer == this.currentLevel)
             {
-                this.speech.Speak("You can do better. Try to draw a" + this.currentLevel + " using your hand as shown.");
+                this.speech.Speak("You can do better. Try to immitate the symbol using your hand as shown.");
             }
             else
             { 
@@ -124,6 +128,10 @@ namespace Harley
                 this.circleDetector.OnGestureDetected += OnHandGesture;
             }
 
+           this.gestureDetector = new SwipeGestureDetector();
+           this.gestureDetector.DisplayCanvas = videoCanvas;
+           this.gestureDetector.OnGestureDetected += OnHandGesture;
+
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
                 if (potentialSensor.Status == KinectStatus.Connected)
@@ -132,6 +140,8 @@ namespace Harley
                     break;
                 }
             }
+
+            this.speech = new Speech(null, grammar);
 
             if (null != this.kinectSensor)
             {
@@ -233,6 +243,8 @@ namespace Harley
         {
             if (gesture == this.currentLevel)
             {
+                this.timer.Stop();
+
                 this.levelNumber++;
 
                 if (this.levelNumber >= this.levels.Count())
@@ -261,24 +273,32 @@ namespace Harley
 
                     Color focusTileFill = Color.FromRgb(96, 96, 96);
                     SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
-                    TriangleTile.Fill = brush2;
+                    SwipeRightTile.Fill = brush2;
+
+                    // display the large icon
+                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_right_big.png"));
                 }
-                else if(this.currentLevel == TRIANGLE)
+                else if(this.currentLevel == SWIPE_LEFT)
                 {
                     // highlight the next exercise
 
                     Color tileFill = Color.FromRgb(76, 76, 76);
                     SolidColorBrush brush1 = new SolidColorBrush(tileFill);
-                    TriangleTile.Fill = brush1;
+                    SwipeRightTile.Fill = brush1;
 
                     Color focusTileFill = Color.FromRgb(96, 96, 96);
                     SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
-                    AngryTile.Fill = brush2;
+                    SwipeLeftTile.Fill = brush2;
+
+                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_left_big.png"));
                 }
 
                 this.currentLevel = this.levels.ElementAt(this.levelNumber);
 
                 this.speech.Speak("Well done!");
+
+                this.levelForTimer = this.currentLevel;
+                this.timer.Start();
 
                 this.playNextLevel(this.currentLevel);
             }
@@ -286,7 +306,18 @@ namespace Harley
 
         private void playNextLevel(string level)
         {
-            this.speech.Speak("A " + level + " is shown, try drawing it by moving your right hand.");
+            if(level == CIRCLE)
+            {
+                this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
+            }
+            else if(level == SWIPE_LEFT)
+            {
+                this.speech.SpeakAsync("A left arrow is shown. Slide your hand to left.");
+            }
+            else if (level == SWIPE_RIGHT)
+            {
+                this.speech.SpeakAsync("A right arrow is shown. Slide your hand to right.");
+            }
         }
 
         /// <summary>

@@ -49,6 +49,7 @@ namespace Harley
             this.speech.Speak("Welcome to Harley");
             this.speech.Speak("What would you like to do?");
             this.speech.Start();*/
+
             this.SwitchToStarActivityWindow();
             //this.SwitchToGestureActivityWindow();
             //this.SwitchToFaceRecognitionActivityWindow();

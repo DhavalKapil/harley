@@ -30,12 +30,12 @@
         <Label x:Name="FacialExpressionLabel" Content="Facial Expression" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Grid.ColumnSpan="2" Height="39"/>
         <Rectangle x:Name="CircleTile" Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,106,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,114,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\circle.png"/>
-        <Rectangle x:Name="TriangleTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,194,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
-        <Rectangle x:Name="AngryTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,282,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
+        <Rectangle x:Name="SwipeRightTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,194,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
+        <Rectangle x:Name="SwipeLeftTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,282,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Label Content="Circle" Grid.Column="2" HorizontalAlignment="Left" Margin="812,161,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Label Content="Triangle" Grid.Column="2" HorizontalAlignment="Left" Margin="809,250,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,205,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\triangle.png"/>
-        <Label Content="Angry" Grid.Column="2" HorizontalAlignment="Left" Margin="811,338,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,294,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\angry.png"/>
+        <Label Content="Right" Grid.Column="2" HorizontalAlignment="Left" Margin="815,250,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,224,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\right_swipe.png"/>
+        <Label Content="Left" Grid.Column="2" HorizontalAlignment="Left" Margin="815,338,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,311,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\left_swipe.png"/>
     </Grid>
 </Window>

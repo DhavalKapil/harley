@@ -30,8 +30,8 @@
         <Label x:Name="FacialExpressionLabel" Content="Facial Expression" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Width="175" Foreground="#FF588537" FontSize="22" FontFamily="Segoe UI Light" Grid.ColumnSpan="2" Height="39"/>
         <Rectangle x:Name="HappyTile" Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,106,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,114,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\happy.png"/>
-        <Rectangle x:Name="SadTile" Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,194,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
-        <Rectangle x:Name="AngryTile" Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,282,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
+        <Rectangle x:Name="SadTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,194,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
+        <Rectangle x:Name="AngryTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,282,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Label Content="Happy" Grid.Column="2" HorizontalAlignment="Left" Margin="811,161,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
         <Label Content="Sad" Grid.Column="2" HorizontalAlignment="Left" Margin="819,250,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
         <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,205,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\sad.png"/>
