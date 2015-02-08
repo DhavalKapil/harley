@@ -65,10 +65,12 @@
       <HintPath>lib\KinectMeasurementsLib\bin\Debug\KinectMeasurementsLib.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Kinect, Version=1.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Kinect.Toolkit.FaceTracking">
-      <HintPath>lib\KinectToolbox\bin\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll</HintPath>
+    <Reference Include="Microsoft.Kinect.Toolkit">
+      <HintPath>lib\Microsoft.Kinect.Toolkit\bin\Debug\Microsoft.Kinect.Toolkit.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Kinect.Tools, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64" />
+    <Reference Include="Microsoft.Kinect.Toolkit.FaceTracking">
+      <HintPath>lib\Microsoft.Kinect.Toolkit.FaceTracking\bin\x86\Debug\Microsoft.Kinect.Toolkit.FaceTracking.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Speech, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files\Microsoft SDKs\Speech\v11.0\Assembly\Microsoft.Speech.dll</HintPath>
@@ -97,6 +99,7 @@
       <DependentUpon>GestureActivityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Speech.cs" />
+    <Compile Include="FaceTrackingViewer.cs" />
     <Compile Include="FaceRecognitionActivityWindow.xaml.cs">
       <DependentUpon>FaceRecognitionActivityWindow.xaml</DependentUpon>
     </Compile>

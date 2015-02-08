@@ -13,6 +13,8 @@ namespace Harley
     using System.Windows.Media.Imaging;
     using Microsoft.Kinect;
     using Microsoft.Kinect.Toolkit;
+    using Kinect.Toolbox;
+    using Microsoft.Kinect.Toolkit.FaceTracking;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -24,9 +26,11 @@ namespace Harley
         private WriteableBitmap colorImageWritableBitmap;
         private byte[] colorImageData;
         private ColorImageFormat currentColorImageFormat = ColorImageFormat.Undefined;
+        private FaceTrackingViewer faceTrackingViewer;
 
         public FaceRecognitionActivityWindow()
         {
+            faceTrackingViewer = new FaceTrackingViewer();
             InitializeComponent();
 
             var faceTrackingViewerBinding = new Binding("Kinect") { Source = sensorChooser };
@@ -113,8 +117,8 @@ namespace Harley
                     this.currentColorImageFormat = colorImageFrame.Format;
                     this.colorImageData = new byte[colorImageFrame.PixelDataLength];
                     this.colorImageWritableBitmap = new WriteableBitmap(
-                        colorImageFrame.Width, colorImageFrame.Height, 96, 96, PixelFormats.Bgr32, null);
-                    ColorImage.Source = this.colorImageWritableBitmap;
+                    colorImageFrame.Width, colorImageFrame.Height, 96, 96, PixelFormats.Bgr32, null);
+                    Image.Source = this.colorImageWritableBitmap;
                 }
 
                 colorImageFrame.CopyPixelDataTo(this.colorImageData);

@@ -4,7 +4,7 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-namespace FaceTrackingBasics
+namespace Harley
 {
     using System;
     using System.Collections.Generic;
@@ -48,7 +48,7 @@ namespace FaceTrackingBasics
 
         public FaceTrackingViewer()
         {
-            this.InitializeComponent();
+            //this.InitializeComponent();
         }
 
         ~FaceTrackingViewer()

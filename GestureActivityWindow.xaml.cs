@@ -51,8 +51,8 @@ namespace Harley
         private List<string> levels;
 
         private const string CIRCLE = "Circle";
-        private const string SWIPE_LEFT = "SwipeToLeft";
-        private const string SWIPE_RIGHT = "SwipeToRight";
+        private const string TRIANGLE = "Triangle";
+        private const string SQUARE = "Square";
         
         /// <summary>
         /// Prompt interval for user inactivity
@@ -87,8 +87,8 @@ namespace Harley
             // update all available levels
             levels = new List<string>();
             levels.Add(CIRCLE);
-            levels.Add(SWIPE_LEFT);
-            levels.Add(SWIPE_RIGHT);
+            levels.Add(TRIANGLE);
+            levels.Add(SQUARE);
 
             this.levelForTimer = this.currentLevel;
 
@@ -124,7 +124,7 @@ namespace Harley
            using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
             {
                 this.circleDetector = new TemplatedGestureDetector("Circle", recordStream);
-                //this.circleDetector.DisplayCanvas = videoCanvas;
+                this.circleDetector.DisplayCanvas = videoCanvas;
                 this.circleDetector.OnGestureDetected += OnHandGesture;
             }
 
@@ -245,7 +245,7 @@ namespace Harley
 
         private void OnHandGesture(string gesture)
         {
-            if (gesture == this.currentLevel)
+            if (true || gesture == this.currentLevel)
             {
                 this.timer.Stop();
 
@@ -262,7 +262,7 @@ namespace Harley
                     // stop drawing red ellipses
                     this.circleDetector.DisplayCanvas = null;
 
-                    this.speech.Speak("Very well! You have completed all the levels.");
+                    this.speech.SpeakAsync("Very well! You have completed all the levels.");
 
                     return;
                 }
@@ -280,10 +280,10 @@ namespace Harley
                     SwipeRightTile.Fill = brush2;
 
                     // display the large icon
-                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_right_big.png"));
-                    ActivityLabel.Content = "Right";
+                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\triangle_big.png"));
+                    ActivityLabel.Content = "Triangle";
                 }
-                else if(this.currentLevel == SWIPE_RIGHT)
+                else if(this.currentLevel == TRIANGLE)
                 {
                     // highlight the next exercise
 
@@ -295,8 +295,8 @@ namespace Harley
                     SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
                     SwipeLeftTile.Fill = brush2;
 
-                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_left_big.png"));
-                    ActivityLabel.Content = "Left";
+                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\square_big.png"));
+                    ActivityLabel.Content = "Square";
                 }
 
                 this.currentLevel = this.levels.ElementAt(this.levelNumber);
@@ -312,18 +312,7 @@ namespace Harley
 
         private void playNextLevel(string level)
         {
-            if(level == CIRCLE)
-            {
-                this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
-            }
-            else if(level == SWIPE_LEFT)
-            {
-                this.speech.SpeakAsync("A left arrow is shown. Slide your hand to left.");
-            }
-            else if (level == SWIPE_RIGHT)
-            {
-                this.speech.SpeakAsync("A right arrow is shown. Slide your hand to right.");
-            }
+              this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
         }
 
         /// <summary>

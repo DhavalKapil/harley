@@ -21,7 +21,7 @@
                 <Canvas HorizontalAlignment="Left" Height="100" Margin="355,302,0,0" VerticalAlignment="Top" Width="100"/>
                 <Canvas HorizontalAlignment="Left" Height="100" Margin="475,387,0,0" VerticalAlignment="Top" Width="100"/>
                 <Image x:Name="Image" HorizontalAlignment="Left" Height="500" Margin="481,228,-245,0" VerticalAlignment="Top" Width="494"/>
-                <Image HorizontalAlignment="Left" Height="470" Margin="6,263,0,0" VerticalAlignment="Top" Width="457" Source="C:\Users\Hp\Documents\Visual Studio 2013\Projects\harley\resources\images\star\hard.png"/>
+                <Image HorizontalAlignment="Left" Height="470" Margin="6,263,0,0" VerticalAlignment="Top" Width="457" Source="C:\Users\Abhi\Projects\harley\resources\images\star\hard.png"/>
                 <Label Content="Star Jump" HorizontalAlignment="Left" Margin="150,568,0,0" VerticalAlignment="Top" Foreground="White" FontSize="36"/>
             </Grid>
         </Viewbox>
