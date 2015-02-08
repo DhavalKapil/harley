@@ -42,17 +42,17 @@ namespace Harley
 
         public MainWindow()
         {
-            /*InitializeComponent();
+            InitializeComponent();
 
             InitializeKinect();
 
-            this.speech.Speak("Welcome to Harley");
-            this.speech.Speak("What would you like to do?");
-            this.speech.Start();*/
+            this.speech.SpeakAsync("Welcome to Harley");
+            this.speech.SpeakAsync("What would you like to do?");
+            //this.speech.Start();
 
             //this.SwitchToStarActivityWindow();
             //this.SwitchToGestureActivityWindow();
-            this.SwitchToFaceRecognitionActivityWindow();
+            //this.SwitchToFaceRecognitionActivityWindow();
 
             // Initialize speech recognition here
         }
@@ -128,6 +128,21 @@ namespace Harley
         {
             // All cleanup work goes here
             // this includes uninitializing Sensors
+        }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.SwitchToStarActivityWindow();
+        }
+
+        private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
+        {
+            this.SwitchToGestureActivityWindow();
+        }
+
+        private void Image_MouseDown_2(object sender, MouseButtonEventArgs e)
+        {
+            this.SwitchToFaceRecognitionActivityWindow();
         }
     }
 

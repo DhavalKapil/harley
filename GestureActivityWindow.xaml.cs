@@ -124,13 +124,19 @@ namespace Harley
            using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
             {
                 this.circleDetector = new TemplatedGestureDetector("Circle", recordStream);
-                this.circleDetector.DisplayCanvas = videoCanvas;
+                //this.circleDetector.DisplayCanvas = videoCanvas;
                 this.circleDetector.OnGestureDetected += OnHandGesture;
             }
 
            this.gestureDetector = new SwipeGestureDetector();
-           this.gestureDetector.DisplayCanvas = videoCanvas;
+           //this.gestureDetector.DisplayCanvas = videoCanvas;
            this.gestureDetector.OnGestureDetected += OnHandGesture;
+            
+           ParallelCombinedGestureDetector parallelCombinedGestureDetector = new ParallelCombinedGestureDetector();
+           parallelCombinedGestureDetector.OnGestureDetected += OnHandGesture;
+           parallelCombinedGestureDetector.DisplayCanvas = videoCanvas;
+           parallelCombinedGestureDetector.Add(circleDetector);
+           parallelCombinedGestureDetector.Add(gestureDetector);
 
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
@@ -277,6 +283,7 @@ namespace Harley
 
                     // display the large icon
                     ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_right_big.png"));
+                    ActivityLabel.Content = "Right";
                 }
                 else if(this.currentLevel == SWIPE_LEFT)
                 {
@@ -291,11 +298,12 @@ namespace Harley
                     SwipeLeftTile.Fill = brush2;
 
                     ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_left_big.png"));
+                    ActivityLabel.Content = "Left";
                 }
 
                 this.currentLevel = this.levels.ElementAt(this.levelNumber);
 
-                this.speech.Speak("Well done!");
+                this.speech.SpeakAsync("Well done!");
 
                 this.levelForTimer = this.currentLevel;
                 this.timer.Start();

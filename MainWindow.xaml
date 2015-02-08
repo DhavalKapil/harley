@@ -11,9 +11,9 @@
     <Label x:Name="game_label" Content="games" HorizontalAlignment="Left" Height="62" Margin="349,101,0,0" VerticalAlignment="Top" Width="128" FontSize="32" Foreground="#FF333333"/>
     <Label x:Name="about_label" Content="about" HorizontalAlignment="Left" Height="62" Margin="487,101,0,0" VerticalAlignment="Top" Width="128" FontSize="32" Foreground="#FF8A8D8E"/>
     <Label x:Name="credit_label" Content="credits" HorizontalAlignment="Left" Height="62" Margin="620,101,0,0" VerticalAlignment="Top" Width="138" FontSize="32" Background="#00000000" Foreground="#FF8A8D8E"/>
-    <Image HorizontalAlignment="Left" Height="182" Margin="356,239,0,0" VerticalAlignment="Top" Width="164" Source="C:\Users\Abhi\Projects\harley\resources\images\main\star_jump_tile.png"/>
-    <Image HorizontalAlignment="Left" Height="165" Margin="526,239,0,0" VerticalAlignment="Top" Width="290" Source="C:\Users\Abhi\Projects\harley\resources\images\main\shapes.png"/>
-    <Image HorizontalAlignment="Left" Height="166" Margin="356,409,0,0" VerticalAlignment="Top" Width="485" Source="C:\Users\Abhi\Projects\harley\resources\images\main\expression_tile.png" RenderTransformOrigin="0.478,0.294"/>
+    <Image HorizontalAlignment="Left" Height="182" Margin="356,239,0,0" VerticalAlignment="Top" Width="164" Source="C:\Users\Abhi\Projects\harley\resources\images\main\star_jump_tile.png" MouseDown="Image_MouseDown"/>
+    <Image HorizontalAlignment="Left" Height="165" Margin="526,239,0,0" VerticalAlignment="Top" Width="290" Source="C:\Users\Abhi\Projects\harley\resources\images\main\shapes.png" MouseDown="Image_MouseDown_1"/>
+    <Image HorizontalAlignment="Left" Height="166" Margin="356,409,0,0" VerticalAlignment="Top" Width="485" Source="C:\Users\Abhi\Projects\harley\resources\images\main\expression_tile.png" RenderTransformOrigin="0.478,0.294" MouseDown="Image_MouseDown_2"/>
     <Label Content="Star Jump" HorizontalAlignment="Left" Height="95" Margin="370,357,0,0" VerticalAlignment="Top" Width="169" Foreground="White" FontSize="20" FontFamily="Segoe UI Light"/>
     <Label Content="Shape&#xD;&#xA;Drawing" HorizontalAlignment="Left" Height="69" Margin="530,330,0,0" VerticalAlignment="Top" Width="92" Foreground="White" FontSize="20" FontFamily="Segoe UI Light"/>
     <Label Content="Facial &#xD;&#xA;Expression" HorizontalAlignment="Left" Height="104" Margin="686,497,0,0" VerticalAlignment="Top" Width="104" Foreground="White" FontSize="20" FontFamily="Segoe UI Light"/>

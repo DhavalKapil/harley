@@ -20,9 +20,9 @@
                 <Rectangle Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="555" Margin="890,110,-264,0" Stroke="#00000000" VerticalAlignment="Top" Width="104"/>
                 <Rectangle Fill="#FF75B943" HorizontalAlignment="Left" Height="555" Margin="-15,110,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="465"/>
                 <Image x:Name="Image" HorizontalAlignment="Left" Height="557" Margin="449,107,-160,0" VerticalAlignment="Top" Width="441"/>
-                <Canvas x:Name="videoCanvas" HorizontalAlignment="Left" Height="480" Margin="448,113,-159,0" VerticalAlignment="Top" Width="441"/>
                 <Image x:Name="ActivityImage" HorizontalAlignment="Left" Height="205" Margin="118,223,0,0" VerticalAlignment="Top" Width="205" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\circle_big.png"/>
                 <Label x:Name="ActivityLabel" Content="Circle" HorizontalAlignment="Left" Margin="158,452,0,0" VerticalAlignment="Top" FontSize="40" Foreground="White"/>
+                <Canvas x:Name="videoCanvas" HorizontalAlignment="Left" Height="480" Margin="448,113,-159,0" VerticalAlignment="Top" Width="441"/>
             </Grid>
         </Viewbox>
         <Label x:Name="StarJumpLabel" Content="Star Jump" HorizontalAlignment="Left" Margin="12,106,0,0" VerticalAlignment="Top" Width="122" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Background="#00588537" Height="39"/>
