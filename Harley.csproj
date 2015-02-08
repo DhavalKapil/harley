@@ -98,6 +98,9 @@
     <Compile Include="FaceRecognitionActivityWindow.xaml.cs">
       <DependentUpon>FaceRecognitionActivityWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="StarActivityWindow.xaml.cs">
+      <DependentUpon>StarActivityWindow.xaml</DependentUpon>
+    </Compile>
     <Page Include="GestureActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +118,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="FaceRecognitionActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="StarActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
