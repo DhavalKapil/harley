@@ -72,6 +72,18 @@ namespace Harley
         }
 
         /// <summary>
+        /// Function to stop the narration and still open another one
+        /// </summary>
+        public void RestartSpeak()
+        {
+            if (speechSynthesizer!=null)
+            {
+                speechSynthesizer.Dispose();
+                speechSynthesizer = new SpeechSynthesizer();
+            }
+        }
+
+        /// <summary>
         /// Function to stop existing narration
         /// </summary>
         public void StopSpeak()
