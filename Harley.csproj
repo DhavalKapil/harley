@@ -94,7 +94,6 @@
       <DependentUpon>GestureActivityWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Speech.cs" />
-    <Compile Include="Star.cs" />
     <Compile Include="FaceRecognitionActivityWindow.xaml.cs">
       <DependentUpon>FaceRecognitionActivityWindow.xaml</DependentUpon>
     </Compile>

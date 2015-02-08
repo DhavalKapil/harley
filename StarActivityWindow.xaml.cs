@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Diagnostics;
+using System.Timers;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -39,8 +40,56 @@ namespace Harley
         /// </summary>
         private readonly string[] grammar = { "some", "options" };
 
+        /// <summary>
+        /// The timer object
+        /// </summary>
+        private Timer timer;
+
+        /// <summary>
+        /// The timer interval
+        /// </summary>
+        private const int TIMER_INTERVAL = 4000;
+
+        /// <summary>
+        /// The minimum threshold angle at the elbow formed by the arm
+        /// </summary>
+        private const float MIN_ELBOW_ANGLE = 160.0f;
+
+        /// <summary>
+        /// The maximum threshold angle at the elbow formed by the arm
+        /// </summary>
+        private const float MAX_ELBOW_ANGLE = 190.0f;
+
+        /// <summary>
+        /// The minimum angle formed at the shoulder between the arm and the body
+        /// </summary>
+        private const float MIN_SHOULDER_ANGLE = 100.0f;
+
+        /// <summary>
+        /// The maximum angle formed at the shoulder between the arm and the body
+        /// </summary>
+        private const float MAX_SHOULDER_ANGLE = 135.0f;
+
+        /// <summary>
+        /// Static variable to maintain the number of continuous successes
+        /// </summary>
+        private static int count = 0;
+
+        /// <summary>
+        /// The total no of continuous successes that would give a final success
+        /// </summary>
+        private const int COUNT_LIMIT = 20;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public StarActivityWindow()
         {
+            timer = new Timer();
+            timer.Elapsed += new ElapsedEventHandler(PromptUserForShape);
+            timer.Interval = TIMER_INTERVAL; // in milliseconds
+            timer.Start();
+
             InitializeComponent();
 
             InitializeKinect();
@@ -80,6 +129,16 @@ namespace Harley
         }
 
         /// <summary>
+        /// Function called after every timer interval
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
+        private void PromptUserForShape(object source, ElapsedEventArgs e)
+        {   
+            this.speech.Speak("You can do better. Trying making the shape with your arms as shown on the screen.");
+        }
+
+        /// <summary>
         /// Function called whenever a new skeleton frame arrives
         /// </summary>
         /// <param name="sender"></param>
@@ -114,7 +173,67 @@ namespace Harley
         /// <param name="skeleton"></param>
         private void handleSkeleton(Skeleton skeleton)
         {
+            if (CheckStar(skeleton))
+            {
+                timer.Stop();
 
+                this.speech.Speak("Congratulations for finishing this level!");
+            }
+        }
+
+        /// <summary>
+        /// Function to check a paricular body whether it is a star or not
+        /// </summary>
+        /// <param name="skeleton"></param>
+        /// <returns>Return's true if it is star shaped</returns>
+        private static bool CheckSkeleton(Skeleton skeleton)
+        {
+            // Checking if left elbow is straight
+            float leftElbowAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ElbowLeft, JointType.WristLeft, JointType.ShoulderLeft);
+            if (leftElbowAngle > MAX_ELBOW_ANGLE || leftElbowAngle < MIN_ELBOW_ANGLE)
+            {
+                return false;
+            }
+
+            // Checking if right elbow is straight
+            float rightElbowAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ElbowRight, JointType.WristRight, JointType.ShoulderRight);
+            if (rightElbowAngle > MAX_ELBOW_ANGLE || rightElbowAngle < MIN_ELBOW_ANGLE)
+            {
+                return false;
+            }
+
+            // Checking if left should angle is correct
+            float leftShoulderAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ShoulderLeft, JointType.HipLeft, JointType.ElbowLeft);
+            if (leftShoulderAngle < MIN_SHOULDER_ANGLE || leftShoulderAngle > MAX_SHOULDER_ANGLE)
+            {
+                return false;
+            }
+
+            // Checking if right should angle is correct
+            float rightShoulderAngle = KinectMeasurementsTools.AngleBetweenJoints(skeleton, JointType.ShoulderRight, JointType.HipRight, JointType.ElbowRight);
+            if (rightShoulderAngle < MIN_SHOULDER_ANGLE || rightShoulderAngle > MAX_SHOULDER_ANGLE)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Function that returns true if COUNT_LIMIT consecutive frames are in perfect shape
+        /// </summary>
+        /// <param name="skeleton"></param>
+        /// <returns></returns>
+        private static bool CheckStar(Skeleton skeleton)
+        {
+            if (CheckSkeleton(skeleton))
+                count++;
+            else
+                count = 0;
+
+            if (count == COUNT_LIMIT)
+                return true;
+            return false;
         }
     }
 }
