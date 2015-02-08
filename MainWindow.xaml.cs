@@ -44,11 +44,25 @@ namespace Harley
             // Initialize speech recognition here
         }
 
+        /// <summary>
+        /// Switches the window to Face Recognition activity window
+        /// </summary>
         private void SwitchToFaceRecognitionActivityWindow()
         {
-            Window window = new FaceRecognitionActivityWindow();
-            App.Current.MainWindow = window;
-            window.Show();
+            Window faceRecogWindow = new FaceRecognitionActivityWindow();
+            App.Current.MainWindow = faceRecogWindow;
+            faceRecogWindow.Show();
+            this.Close();
+        }
+
+        /// <summary>
+        /// Switches the window to Gesture activity window
+        /// </summary>
+        private void SwitchToGestureActivityWindow()
+        {
+            Window gestureWindow = new GestureActivityWindow();
+            App.Current.MainWindow = gestureWindow;
+            gestureWindow.Show();
             this.Close();
         }
 

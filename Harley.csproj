@@ -90,11 +90,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GestureActivityWindow.xaml.cs">
+      <DependentUpon>GestureActivityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Speech.cs" />
     <Compile Include="Star.cs" />
     <Compile Include="FaceRecognitionActivityWindow.xaml.cs">
       <DependentUpon>FaceRecognitionActivityWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="GestureActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
