@@ -283,7 +283,7 @@ namespace Harley
                     ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_right_big.png"));
                     ActivityLabel.Content = "Right";
                 }
-                else if(this.currentLevel == SWIPE_LEFT)
+                else if(this.currentLevel == SWIPE_RIGHT)
                 {
                     // highlight the next exercise
 
