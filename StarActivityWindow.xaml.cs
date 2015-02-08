@@ -48,7 +48,7 @@ namespace Harley
         /// <summary>
         /// The timer interval
         /// </summary>
-        private const int TIMER_INTERVAL = 4000;
+        private const int TIMER_INTERVAL = 8000;
 
         /// <summary>
         /// The minimum threshold angle at the elbow formed by the arm
@@ -91,6 +91,11 @@ namespace Harley
         private byte[] colorPixels;
 
         /// <summary>
+        /// Whether the user has completed the level or not
+        /// </summary>
+        private bool success;
+
+        /// <summary>
         /// Constructor
         /// </summary>
         public StarActivityWindow()
@@ -99,6 +104,8 @@ namespace Harley
             timer.Elapsed += new ElapsedEventHandler(PromptUserForShape);
             timer.Interval = TIMER_INTERVAL; // in milliseconds
             timer.Start();
+
+            success = false;
 
             InitializeComponent();
 
@@ -222,12 +229,13 @@ namespace Harley
         /// <param name="skeleton"></param>
         private void handleSkeleton(Skeleton skeleton)
         {
-            if (CheckStar(skeleton))
+            if (!success && CheckStar(skeleton))
             {
                 Trace.WriteLine("S");
                 timer.Stop();
-                this.speech.StopSpeak();
+                this.speech.RestartSpeak();
                 this.speech.Speak("Congratulations for finishing this level!");
+                success = true;
             }
         }
 
