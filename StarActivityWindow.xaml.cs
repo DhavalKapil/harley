@@ -155,7 +155,7 @@ namespace Harley
                 // Connection is failed
                 return;
             }
-            this.speech = new Speech(this.kinectSensor, grammar);
+            this.speech = new Speech(this.kinectSensor, grammar, this);
             this.speech.Start();
         }
 

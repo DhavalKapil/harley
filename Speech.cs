@@ -5,6 +5,14 @@ using System.Text;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Speech.Synthesis;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 using Microsoft.Kinect;
 using Microsoft.Speech.AudioFormat;
 using Microsoft.Speech.Recognition;
@@ -34,14 +42,20 @@ namespace Harley
         private string[] grammarList;
 
         /// <summary>
+        /// Window object
+        /// </summary>
+        private Window window;
+
+        /// <summary>
         /// Constructor
         /// </summary>
-        public Speech(KinectSensor kinectSensor, string[] grammarList)
+        public Speech(KinectSensor kinectSensor, string[] grammarList, Window window)
         {
             speechSynthesizer = new SpeechSynthesizer();
 
             this.kinectSensor = kinectSensor;
             this.grammarList = grammarList;
+            this.window = window;
 
             speechRecognizer = CreateSpeechRecognizer();
         }
@@ -211,10 +225,16 @@ namespace Harley
             switch(e.Result.Text)
             {
                 case "star":
+                    window.Close();
+                    MainWindow.SwitchToStarActivityWindow();
                     break;
                 case "shape":
+                    window.Close();
+                    MainWindow.SwitchToGestureActivityWindow();
                     break;
                 case "facial":
+                    window.Close();
+                    MainWindow.SwitchToFaceRecognitionActivityWindow();
                     break;
             }
         }

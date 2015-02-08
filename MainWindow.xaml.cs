@@ -48,7 +48,7 @@ namespace Harley
 
             this.speech.SpeakAsync("Welcome to Harley");
             this.speech.SpeakAsync("What would you like to do?");
-            //this.speech.Start();
+            this.speech.Start();
 
             //this.SwitchToStarActivityWindow();
             //this.SwitchToGestureActivityWindow();
@@ -82,40 +82,37 @@ namespace Harley
                 return;
             }
 
-            this.speech = new Speech(this.kinectSensor, grammar);
+            this.speech = new Speech(this.kinectSensor, grammar, this);
             this.speech.Start();
         }
 
         /// <summary>
         /// Switches the window to Star Activity window
         /// </summary>
-        private void SwitchToStarActivityWindow()
+        public static void SwitchToStarActivityWindow()
         {
             Window starActivityWindow = new StarActivityWindow();
             App.Current.MainWindow = starActivityWindow;
-            this.Close();
             starActivityWindow.Show();
         }
 
         /// <summary>
         /// Switches the window to Face Recognition activity window
         /// </summary>
-        private void SwitchToFaceRecognitionActivityWindow()
+        public static void SwitchToFaceRecognitionActivityWindow()
         {
             Window faceRecogWindow = new FaceRecognitionActivityWindow();
             App.Current.MainWindow = faceRecogWindow;
-            this.Close();
             faceRecogWindow.Show();
         }
 
         /// <summary>
         /// Switches the window to Gesture activity window
         /// </summary>
-        private void SwitchToGestureActivityWindow()
+        public static void SwitchToGestureActivityWindow()
         {
             Window gestureWindow = new GestureActivityWindow();
             App.Current.MainWindow = gestureWindow;
-            this.Close();
             gestureWindow.Show();
         }
 
@@ -132,17 +129,17 @@ namespace Harley
 
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.SwitchToStarActivityWindow();
+            MainWindow.SwitchToStarActivityWindow();
         }
 
         private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-            this.SwitchToGestureActivityWindow();
+            MainWindow.SwitchToGestureActivityWindow();
         }
 
         private void Image_MouseDown_2(object sender, MouseButtonEventArgs e)
         {
-            this.SwitchToFaceRecognitionActivityWindow();
+            MainWindow.SwitchToFaceRecognitionActivityWindow();
         }
     }
 

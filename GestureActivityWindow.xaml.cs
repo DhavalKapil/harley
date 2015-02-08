@@ -138,16 +138,14 @@ namespace Harley
            parallelCombinedGestureDetector.Add(circleDetector);
            parallelCombinedGestureDetector.Add(gestureDetector);
 
-            foreach (var potentialSensor in KinectSensor.KinectSensors)
-            {
-                if (potentialSensor.Status == KinectStatus.Connected)
-                {
-                    this.kinectSensor = potentialSensor;
-                    break;
-                }
-            }
-
-            this.speech = new Speech(null, grammar);
+           foreach (var potentialSensor in KinectSensor.KinectSensors)
+           {
+               if (potentialSensor.Status == KinectStatus.Connected)
+               {
+                   this.kinectSensor = potentialSensor;
+                   break;
+               }
+           }
 
             if (null != this.kinectSensor)
             {
@@ -179,7 +177,7 @@ namespace Harley
                 return;
             }
 
-            this.speech = new Speech(this.kinectSensor, grammar);
+            this.speech = new Speech(this.kinectSensor, grammar, this);
             //this.speech.Start();
         }
 
