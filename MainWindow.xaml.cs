@@ -52,6 +52,10 @@ namespace Harley
 
         public MainWindow()
         {
+            /*Window window = new Window1();
+            App.Current.MainWindow = window;
+            window.Show();
+            this.Close();*/
             InitializeComponent();
             
             InitializeKinect();
@@ -62,10 +66,10 @@ namespace Harley
         /// </summary>
         private void InitializeKinect()
         {
-           using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\squareKB.save", FileMode.OpenOrCreate))
+           using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\t_KB.save", FileMode.OpenOrCreate))
             {
-                this.circleDetector = new TemplatedGestureDetector("Square", recordStream);
-                this.circleDetector.DisplayCanvas = videoCanvas;
+                this.circleDetector = new TemplatedGestureDetector("T", recordStream);
+                //this.circleDetector.DisplayCanvas = videoCanvas;
                 this.circleDetector.OnGestureDetected += OnHandGesture;
             }
 
@@ -94,7 +98,7 @@ namespace Harley
                 this.colorBitmap = new WriteableBitmap(this.kinectSensor.ColorStream.FrameWidth, this.kinectSensor.ColorStream.FrameHeight, 96.0, 96.0, PixelFormats.Bgr32, null);
 
                 // Set the image we display to point to the bitmap where we'll put the image data
-                this.Image.Source = this.colorBitmap;
+                //this.Image.Source = this.colorBitmap;
 
                 // Add an event handler to be called whenever there is new color frame data
                 this.kinectSensor.ColorFrameReady += this.SensorColorFrameReady;
@@ -176,8 +180,8 @@ namespace Harley
 
         private void OnHandGesture(string gesture)
         {
-            GestureLabel.Content = gesture + " gesture detected!";
-            Trace.WriteLine("Circle gesture detected!");
+            //GestureLabel.Content = gesture + " gesture detected!";
+            Trace.WriteLine(gesture + " gesture detected!");
         }
 
         /// <summary>
