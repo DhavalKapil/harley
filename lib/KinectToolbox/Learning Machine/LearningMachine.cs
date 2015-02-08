@@ -45,6 +45,15 @@ namespace Kinect.Toolbox
         {
             path.CloseAndPrepare();
             Paths.Add(path);
+            SaveTheGestureInFile();
+        }
+
+        public void SaveTheGestureInFile()
+        {
+            using (Stream recordStream = File.Create(@"C:\Users\Abhi\Projects\harley\data\squareKB.save"))
+            {
+                Persist(recordStream);
+            }
         }
     }
 }
