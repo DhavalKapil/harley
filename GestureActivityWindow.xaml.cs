@@ -66,12 +66,12 @@ namespace Harley
         /// </summary>
         private void InitializeKinect()
         {
-           /*using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
+           using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
             {
                 this.circleDetector = new TemplatedGestureDetector("Circle", recordStream);
                 this.circleDetector.DisplayCanvas = videoCanvas;
                 this.circleDetector.OnGestureDetected += OnHandGesture;
-            }*/
+            }
 
             foreach (var potentialSensor in KinectSensor.KinectSensors)
             {
