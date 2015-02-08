@@ -251,6 +251,31 @@ namespace Harley
                     return;
                 }
 
+                if (this.currentLevel == CIRCLE)
+                {
+                    // highlight the next exercise
+
+                    Color tileFill = Color.FromRgb(76, 76, 76);
+                    SolidColorBrush brush1 = new SolidColorBrush(tileFill);
+                    CircleTile.Fill = brush1;
+
+                    Color focusTileFill = Color.FromRgb(96, 96, 96);
+                    SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
+                    TriangleTile.Fill = brush2;
+                }
+                else if(this.currentLevel == TRIANGLE)
+                {
+                    // highlight the next exercise
+
+                    Color tileFill = Color.FromRgb(76, 76, 76);
+                    SolidColorBrush brush1 = new SolidColorBrush(tileFill);
+                    TriangleTile.Fill = brush1;
+
+                    Color focusTileFill = Color.FromRgb(96, 96, 96);
+                    SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
+                    AngryTile.Fill = brush2;
+                }
+
                 this.currentLevel = this.levels.ElementAt(this.levelNumber);
 
                 this.speech.Speak("Well done!");
@@ -269,7 +294,7 @@ namespace Harley
         /// </summary>
         private void Window_Closing()
         {
-            // this.kinectSensor.Stop();
+            this.kinectSensor.Stop();
         }
     }
 }
