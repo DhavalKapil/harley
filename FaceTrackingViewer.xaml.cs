@@ -4,7 +4,6 @@
 // </copyright>
 // --------------------------------------------------------------------------------------------------------------------
 
-
 namespace FaceTrackingBasics
 {
     using System;
@@ -25,9 +24,9 @@ namespace FaceTrackingBasics
     public partial class FaceTrackingViewer : UserControl, IDisposable
     {
         public static readonly DependencyProperty KinectProperty = DependencyProperty.Register(
-            "Kinect", 
-            typeof(KinectSensor), 
-            typeof(FaceTrackingViewer), 
+            "Kinect",
+            typeof(KinectSensor),
+            typeof(FaceTrackingViewer),
             new PropertyMetadata(
                 null, (o, args) => ((FaceTrackingViewer)o).OnSensorChanged((KinectSensor)args.OldValue, (KinectSensor)args.NewValue)));
 
@@ -56,8 +55,6 @@ namespace FaceTrackingBasics
         {
             this.Dispose(false);
         }
-
-        
 
         public KinectSensor Kinect
         {
@@ -140,7 +137,7 @@ namespace FaceTrackingBasics
                 {
                     this.colorImage = new byte[colorImageFrame.PixelDataLength];
                 }
-                
+
                 // Get the skeleton information
                 if (this.skeletonData == null || this.skeletonData.Length != skeletonFrame.SkeletonArrayLength)
                 {
@@ -261,7 +258,19 @@ namespace FaceTrackingBasics
 
             private SkeletonTrackingState skeletonTrackingState;
 
+            private int currentState;
+
+            private int count;
+
+            private readonly string[] states = { "smiling", "sad", "angry" };
+
             public int LastTrackedFrame { get; set; }
+
+            public SkeletonFaceTracker()
+            {
+                currentState = 0;
+                count = 0;
+            }
 
             public void Dispose()
             {
@@ -314,17 +323,30 @@ namespace FaceTrackingBasics
             /// </summary>
             internal void OnFrameReady(KinectSensor kinectSensor, ColorImageFormat colorImageFormat, byte[] colorImage, DepthImageFormat depthImageFormat, short[] depthImage, Skeleton skeletonOfInterest)
             {
-                if (GlobalVar.Count == 20)
+                if (CheckFace(kinectSensor, colorImageFormat, colorImage, depthImageFormat, depthImage, skeletonOfInterest))
                 {
-                    GlobalVar.maximum();
-                    return;
+                    count++;
                 }
+                else count = 0;
+                if (count == 10)
+                {
+                    count = 0;
+                    currentState = (currentState + 1) % 3;
+
+                    // Notify to change face
+                    Trace.WriteLine("Change state to: " + states[currentState]);
+                }
+            }
+
+            private bool CheckFace(KinectSensor kinectSensor, ColorImageFormat colorImageFormat, byte[] colorImage, DepthImageFormat depthImageFormat, short[] depthImage, Skeleton skeletonOfInterest)
+            {
+
                 this.skeletonTrackingState = skeletonOfInterest.TrackingState;
 
                 if (this.skeletonTrackingState != SkeletonTrackingState.Tracked)
                 {
                     // nothing to do with an untracked skeleton.
-                    return;
+                    return false;
                 }
 
                 if (this.faceTracker == null)
@@ -366,69 +388,51 @@ namespace FaceTrackingBasics
                         var lipRaiser = AUs[AnimationUnit.LipRaiser];
                         var lipStretcher = AUs[AnimationUnit.LipStretcher];
                         //set up file for output
-                       
+                        using (System.IO.StreamWriter file = new System.IO.StreamWriter
+                            (@"C:\Users\Public\data.txt"))
+                        {
+                            file.WriteLine("FaceTrack Data, started recording at " + DateTime.Now.ToString("HH:mm:ss tt"));
+                        }
 
                         //here is the algorithm to test different facial features
-                        
+
                         //BrowLower is messed up if you wear glasses, works if you don't wear 'em
 
+                        string state = "";
+
                         //surprised
-                        GlobalVar.Count++;
                         if ((jawLowerer < 0.25 || jawLowerer > 0.25) && browLower < 0)
                         {
-                            System.Diagnostics.Debug.WriteLine("shocked");
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter
-                                (@"C:\Users\Public\data.txt", true))
-                            {
-                                file.WriteLine("shocked");
-                            } 
+                            state = "surprised";
                         }
                         //smiling
-                        if (lipStretcher > 0.4 || lipDepressor<0)
+                        if (lipStretcher > 0.4 || lipDepressor < 0)
                         {
-                            System.Diagnostics.Debug.WriteLine("smiling");
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter
-                                (@"C:\Users\Public\data.txt", true))
-                            {
-                                file.WriteLine("smiling");
-                            } 
-                        }
-                        //kissing face
-                        if (lipStretcher < -0.75)
-                        {
-                            System.Diagnostics.Debug.WriteLine("kissing face");
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter
-                                (@"C:\Users\Public\data.txt", true))
-                            {
-                                file.WriteLine("kissing face");
-                            } 
+                            state = "smiling";
                         }
                         //sad
-                        if (browRaiser < 0 && lipDepressor>0)
+                        if (browRaiser < 0 && lipDepressor > 0)
                         {
-                            System.Diagnostics.Debug.WriteLine("sad");
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter
-                                (@"C:\Users\Public\data.txt", true))
-                            {
-                                file.WriteLine("sad");
-                            }
+                            state = "sad";
                         }
                         //angry
                         if ((browLower > 0 && (jawLowerer > 0.25 || jawLowerer < -0.25)) ||
                             (browLower > 0 && lipDepressor > 0))
                         {
-                            System.Diagnostics.Debug.WriteLine("angry");
-                            using (System.IO.StreamWriter file = new System.IO.StreamWriter
-                                (@"C:\Users\Public\data.txt", true))
-                            {
-                                file.WriteLine("angry");
-                            }
+                            state = "angry";
                         }
                         //System.Diagnostics.Debug.WriteLine(browLower);
 
                         this.facePoints = frame.GetProjected3DShape();
+
+                        if (states[currentState] == state)
+                        {
+                            return true;
+                        }
                     }
                 }
+
+                return false;
             }
 
             private struct FaceModelTriangle
