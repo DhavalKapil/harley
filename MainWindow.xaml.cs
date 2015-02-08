@@ -39,10 +39,22 @@ namespace Harley
         {
             InitializeComponent();
 
-            this.SwitchToGestureActivityWindow();
+            this.SwitchToStarActivityWindow();
+            //this.SwitchToGestureActivityWindow();
             //this.SwitchToFaceRecognitionActivityWindow();
 
             // Initialize speech recognition here
+        }
+
+        /// <summary>
+        /// Switches the window to Star Activity window
+        /// </summary>
+        private void SwitchToStarActivityWindow()
+        {
+            Window starActivityWindow = new StarActivityWindow();
+            App.Current.MainWindow = starActivityWindow;
+            starActivityWindow.Show();
+            this.Close();
         }
 
         /// <summary>
@@ -52,8 +64,8 @@ namespace Harley
         {
             Window faceRecogWindow = new FaceRecognitionActivityWindow();
             App.Current.MainWindow = faceRecogWindow;
-            faceRecogWindow.Show();
             this.Close();
+            faceRecogWindow.Show();
         }
 
         /// <summary>
@@ -63,8 +75,8 @@ namespace Harley
         {
             Window gestureWindow = new GestureActivityWindow();
             App.Current.MainWindow = gestureWindow;
-            gestureWindow.Show();
             this.Close();
+            gestureWindow.Show();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
