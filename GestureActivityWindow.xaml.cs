@@ -6,6 +6,7 @@ using System.IO;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Timers;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -39,6 +40,24 @@ namespace Harley
         /// </summary>
         private Speech speech;
 
+        private int levelNumber;
+
+        private string currentLevel;
+
+        private string levelForTimer;
+
+        private List<string> levels;
+
+        private const string CIRCLE = "Circle";
+        private const string TRIANGLE = "Triangle";
+        
+        /// <summary>
+        /// Prompt interval for user inactivity
+        /// </summary>
+        private const int PROMPT_INTERVAL = 4000;
+
+        private Timer timer;
+
         /// <summary>
         /// Bitmap that will hold color information
         /// </summary>
@@ -56,9 +75,42 @@ namespace Harley
 
         public GestureActivityWindow()
         {
+
+            // set current level number
+            this.levelNumber = 0;
+
+            // set current level
+            this.currentLevel = CIRCLE;
+            
+            // update all available levels
+            levels = new List<string>();
+            levels.Add(CIRCLE);
+            levels.Add(TRIANGLE);
+
+            this.levelForTimer = this.currentLevel;
+
+            timer = new Timer();
+            timer.Elapsed += new ElapsedEventHandler(PromptUserForGesture);
+            timer.Interval = PROMPT_INTERVAL; // in milliseconds
+            timer.Start();
+
             InitializeComponent();
 
             InitializeKinect();
+
+            this.playNextLevel(CIRCLE);
+        }
+
+        private void PromptUserForGesture(object source, ElapsedEventArgs e)
+        {
+            if (this.levelForTimer == this.currentLevel)
+            {
+                this.speech.Speak("You can do better. Trying drawing a" + this.currentLevel + " using your hand as shown on the screen.");
+            }
+            else
+            { 
+                this.levelForTimer = this.currentLevel;
+            }
         }
 
         /// <summary>
@@ -98,7 +150,7 @@ namespace Harley
                 this.colorBitmap = new WriteableBitmap(this.kinectSensor.ColorStream.FrameWidth, this.kinectSensor.ColorStream.FrameHeight, 96.0, 96.0, PixelFormats.Bgr32, null);
 
                 // Set the image we display to point to the bitmap where we'll put the image data
-                //this.Image.Source = this.colorBitmap;
+                this.Image.Source = this.colorBitmap;
 
                 // Add an event handler to be called whenever there is new color frame data
                 this.kinectSensor.ColorFrameReady += this.SensorColorFrameReady;
@@ -180,7 +232,47 @@ namespace Harley
 
         private void OnHandGesture(string gesture)
         {
-            Trace.WriteLine(gesture + " gesture detected!");
+            if (gesture == this.currentLevel)
+            {
+                this.levelNumber++;
+
+                if (this.levelNumber >= this.levels.Count())
+                {
+                    // stop the timer
+                    this.timer.Stop();
+
+                    // stop looking for hand gestures
+                    this.circleDetector.OnGestureDetected -= OnHandGesture;
+                    
+                    // stop drawing red ellipses
+                    this.circleDetector.DisplayCanvas = null;
+
+                    this.speech.Speak("Very well! You have completed all the levels.");
+
+                    return;
+                }
+
+                this.currentLevel = this.levels.ElementAt(this.levelNumber);
+
+                this.speech.Speak("Well done!");
+
+                this.playNextLevel(this.currentLevel);
+            }
+        }
+
+        private void playNextLevel(string level)
+        {
+            Trace.WriteLine("A!");
+            this.speech.Speak("A " + level + " is shown, try drawing it by moving your right hand.");
+            Trace.WriteLine("B!");
+        }
+
+        /// <summary>
+        /// Cleanup tasks related to kinect skeleton tracking and speech
+        /// </summary>
+        private void Window_Closing()
+        {
+            this.kinectSensor.Stop();
         }
     }
 }
