@@ -52,7 +52,14 @@ namespace Harley
         /// <param name="text"></param>
         public void Speak(String text)
         {
-            speechSynthesizer.Speak(text);
+            try
+            {
+                speechSynthesizer.Speak(text);
+            }
+            catch(Exception e)
+            {
+
+            }
         }
 
         /// <summary>
@@ -189,7 +196,15 @@ namespace Harley
 
             //and finally, here we set what we want to happen when 
             //the SRE recognizes a word
-            Trace.WriteLine(e.Result.Text);
+            switch(e.Result.Text)
+            {
+                case "star":
+                    break;
+                case "shape":
+                    break;
+                case "facial":
+                    break;
+            }
         }
     }
 }

@@ -35,15 +35,54 @@ namespace Harley
         /// </summary>
         private Speech speech;
 
+        /// <summary>
+        /// Readonly array of word list to recognize
+        /// </summary>
+        private readonly string[] grammar = { "star", "shape", "facial" };
+
         public MainWindow()
         {
-            InitializeComponent();
+            /*InitializeComponent();
 
+            InitializeKinect();
+
+            this.speech.Speak("Welcome to Harley");
+            this.speech.Speak("What would you like to do?");
+            this.speech.Start();*/
             this.SwitchToStarActivityWindow();
             //this.SwitchToGestureActivityWindow();
             //this.SwitchToFaceRecognitionActivityWindow();
 
             // Initialize speech recognition here
+        }
+
+        /// <summary>
+        /// Called at the start when the window is loaded
+        /// </summary>
+        private void InitializeKinect()
+        {
+            foreach (var potentialSensor in KinectSensor.KinectSensors)
+            {
+                if (potentialSensor.Status == KinectStatus.Connected)
+                {
+                    this.kinectSensor = potentialSensor;
+                    break;
+                }
+            }
+
+            if (null != this.kinectSensor)
+            {
+                this.kinectSensor.Start();
+            }
+
+            if (null == this.kinectSensor)
+            {
+                // Connection is failed
+                return;
+            }
+
+            this.speech = new Speech(this.kinectSensor, grammar);
+            this.speech.Start();
         }
 
         /// <summary>
@@ -53,8 +92,8 @@ namespace Harley
         {
             Window starActivityWindow = new StarActivityWindow();
             App.Current.MainWindow = starActivityWindow;
-            starActivityWindow.Show();
             this.Close();
+            starActivityWindow.Show();
         }
 
         /// <summary>
