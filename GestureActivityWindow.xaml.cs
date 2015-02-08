@@ -57,7 +57,7 @@ namespace Harley
         /// <summary>
         /// Prompt interval for user inactivity
         /// </summary>
-        private const int PROMPT_INTERVAL = 4000;
+        private const int PROMPT_INTERVAL = 7000;
 
         private Timer timer;
 
@@ -96,10 +96,10 @@ namespace Harley
 
             InitializeKinect();
 
-            /*timer = new Timer();
+            timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(PromptUserForGesture);
             timer.Interval = PROMPT_INTERVAL; // in milliseconds
-            timer.Start();*/
+            timer.Start();
 
             this.playNextLevel(CIRCLE);
         }
@@ -108,7 +108,7 @@ namespace Harley
         {
             if (this.levelForTimer == this.currentLevel)
             {
-                this.speech.Speak("You can do better. Try to draw a" + this.currentLevel + " using your hand as shown.");
+                this.speech.Speak("You can do better. Try to immitate the symbol using your hand as shown.");
             }
             else
             { 
@@ -243,6 +243,8 @@ namespace Harley
         {
             if (gesture == this.currentLevel)
             {
+                this.timer.Stop();
+
                 this.levelNumber++;
 
                 if (this.levelNumber >= this.levels.Count())
@@ -272,6 +274,9 @@ namespace Harley
                     Color focusTileFill = Color.FromRgb(96, 96, 96);
                     SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
                     SwipeRightTile.Fill = brush2;
+
+                    // display the large icon
+                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_right_big.png"));
                 }
                 else if(this.currentLevel == SWIPE_LEFT)
                 {
@@ -284,11 +289,16 @@ namespace Harley
                     Color focusTileFill = Color.FromRgb(96, 96, 96);
                     SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
                     SwipeLeftTile.Fill = brush2;
+
+                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\swipe_left_big.png"));
                 }
 
                 this.currentLevel = this.levels.ElementAt(this.levelNumber);
 
                 this.speech.Speak("Well done!");
+
+                this.levelForTimer = this.currentLevel;
+                this.timer.Start();
 
                 this.playNextLevel(this.currentLevel);
             }
@@ -296,7 +306,18 @@ namespace Harley
 
         private void playNextLevel(string level)
         {
-            this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
+            if(level == CIRCLE)
+            {
+                this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
+            }
+            else if(level == SWIPE_LEFT)
+            {
+                this.speech.SpeakAsync("A left arrow is shown. Slide your hand to left.");
+            }
+            else if (level == SWIPE_RIGHT)
+            {
+                this.speech.SpeakAsync("A right arrow is shown. Slide your hand to right.");
+            }
         }
 
         /// <summary>
