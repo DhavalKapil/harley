@@ -20,6 +20,7 @@
                 <Canvas x:Name="videoCanvas" HorizontalAlignment="Left" Height="480" Margin="448,113,-159,0" VerticalAlignment="Top" Width="441"/>
                 <Canvas HorizontalAlignment="Left" Height="100" Margin="355,302,0,0" VerticalAlignment="Top" Width="100"/>
                 <Canvas HorizontalAlignment="Left" Height="100" Margin="475,387,0,0" VerticalAlignment="Top" Width="100"/>
+                <Image x:Name="Image" HorizontalAlignment="Left" Height="500" Margin="475,134,-239,0" VerticalAlignment="Top" Width="494"/>
             </Grid>
         </Viewbox>
         <Label x:Name="StarJumpLabel" Content="Star Jump" HorizontalAlignment="Left" Margin="12,106,0,0" VerticalAlignment="Top" Width="122" Foreground="#FF588537" FontSize="22" FontFamily="Segoe UI Light" Background="#00588537" Height="39"/>
