@@ -116,6 +116,26 @@ namespace Harley
             gestureWindow.Show();
         }
 
+        /// <summary>
+        /// Switches the window to Gesture activity window
+        /// </summary>
+        public static void SwitchToHurdleJumpActivityWindow()
+        {
+            Window hurdleJumpWindow = new HurdleJumpActivityWindow();
+            App.Current.MainWindow = hurdleJumpWindow;
+            hurdleJumpWindow.Show();
+        }
+
+        /// <summary>
+        /// Switches the window to Gesture activity window
+        /// </summary>
+        public static void SwitchToKaraokeActivityWindow()
+        {
+            Window karaokeWindow = new KaraokeActivityWindow();
+            App.Current.MainWindow = karaokeWindow;
+            karaokeWindow.Show();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Clean();
@@ -142,6 +162,18 @@ namespace Harley
         private void Image_MouseDown_2(object sender, MouseButtonEventArgs e)
         {
             MainWindow.SwitchToFaceRecognitionActivityWindow();
+            this.Close();
+        }
+
+        private void Image_MouseDown_3(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToHurdleJumpActivityWindow();
+            this.Close();
+        }
+
+        private void Image_MouseDown_4(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToKaraokeActivityWindow();
             this.Close();
         }
     }

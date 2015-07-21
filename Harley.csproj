@@ -77,7 +77,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Speech" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -98,6 +100,12 @@
     <Compile Include="GestureActivityWindow.xaml.cs">
       <DependentUpon>GestureActivityWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HurdleJumpActivityWindow.xaml.cs">
+      <DependentUpon>HurdleJumpActivityWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="KaraokeActivityWindow.xaml.cs">
+      <DependentUpon>KaraokeActivityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Speech.cs" />
     <Compile Include="FaceTrackingViewer.cs" />
     <Compile Include="FaceRecognitionActivityWindow.xaml.cs">
@@ -107,6 +115,14 @@
       <DependentUpon>StarActivityWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="GestureActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HurdleJumpActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="KaraokeActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
