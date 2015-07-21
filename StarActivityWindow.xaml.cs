@@ -100,6 +100,7 @@ namespace Harley
         /// </summary>
         public StarActivityWindow()
         {
+            
             timer = new Timer();
             timer.Elapsed += new ElapsedEventHandler(PromptUserForShape);
             timer.Interval = TIMER_INTERVAL; // in milliseconds
@@ -290,6 +291,19 @@ namespace Harley
             if (count == COUNT_LIMIT)
                 return true;
             return false;
+        }
+
+        private void ShapeDrawingLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToGestureActivityWindow();
+            //this.speech.StopSpeak();
+            this.Close();
+        }
+
+        private void FacialExpressionLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToFaceRecognitionActivityWindow();
+            this.Close();
         }
     }
 }

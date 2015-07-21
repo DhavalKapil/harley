@@ -129,9 +129,8 @@ namespace Harley
             }
 
            this.gestureDetector = new SwipeGestureDetector();
-           //this.gestureDetector.DisplayCanvas = videoCanvas;
+           this.gestureDetector.DisplayCanvas = videoCanvas;
            this.gestureDetector.OnGestureDetected += OnHandGesture;
-            
            ParallelCombinedGestureDetector parallelCombinedGestureDetector = new ParallelCombinedGestureDetector();
            parallelCombinedGestureDetector.OnGestureDetected += OnHandGesture;
            parallelCombinedGestureDetector.DisplayCanvas = videoCanvas;
@@ -178,7 +177,7 @@ namespace Harley
             }
 
             this.speech = new Speech(this.kinectSensor, grammar, this);
-            //this.speech.Start();
+            this.speech.Start();
         }
 
         /// <summary>
@@ -248,6 +247,7 @@ namespace Harley
             if (true || gesture == this.currentLevel)
             {
                 this.timer.Stop();
+                this.speech.RestartSpeak();
 
                 this.levelNumber++;
 
@@ -321,6 +321,19 @@ namespace Harley
         private void Window_Closing()
         {
             this.kinectSensor.Stop();
+        }
+
+        private void StarJumpLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToStarActivityWindow();
+            //this.speech.StopSpeak();
+            this.Close();
+        }
+
+        private void FacialExpressionLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToFaceRecognitionActivityWindow();
+            this.Close();
         }
     }
 }

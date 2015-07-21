@@ -42,7 +42,7 @@ namespace Harley
 
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();           
 
             InitializeKinect();
 
@@ -130,16 +130,19 @@ namespace Harley
         private void Image_MouseDown(object sender, MouseButtonEventArgs e)
         {
             MainWindow.SwitchToStarActivityWindow();
+            this.Close();
         }
 
         private void Image_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
             MainWindow.SwitchToGestureActivityWindow();
+            this.Close();
         }
 
         private void Image_MouseDown_2(object sender, MouseButtonEventArgs e)
         {
             MainWindow.SwitchToFaceRecognitionActivityWindow();
+            this.Close();
         }
     }
 

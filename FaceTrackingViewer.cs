@@ -12,6 +12,8 @@ namespace Harley
     using System.Windows;
     using System.Windows.Controls;
     using System.Windows.Media;
+    using System.Windows.Media.Imaging;
+    using System.Windows.Shapes;
     using Microsoft.Kinect;
     using Microsoft.Kinect.Toolkit.FaceTracking;
 
@@ -46,8 +48,11 @@ namespace Harley
 
         private Skeleton[] skeletonData;
 
-        public FaceTrackingViewer()
+        private FaceRecognitionActivityWindow activityWindow;
+
+        public FaceTrackingViewer(FaceRecognitionActivityWindow win)
         {
+            this.activityWindow = win;
             //this.InitializeComponent();
         }
 
@@ -96,20 +101,24 @@ namespace Harley
 
         private void OnAllFramesReady(object sender, AllFramesReadyEventArgs allFramesReadyEventArgs)
         {
+            Trace.WriteLine("allframesready");
             ColorImageFrame colorImageFrame = null;
             DepthImageFrame depthImageFrame = null;
             SkeletonFrame skeletonFrame = null;
 
             try
             {
+                Trace.WriteLine("try start");
                 colorImageFrame = allFramesReadyEventArgs.OpenColorImageFrame();
                 depthImageFrame = allFramesReadyEventArgs.OpenDepthImageFrame();
                 skeletonFrame = allFramesReadyEventArgs.OpenSkeletonFrame();
 
                 if (colorImageFrame == null || depthImageFrame == null || skeletonFrame == null)
                 {
+                    Trace.WriteLine("return from frameready");
                     return;
                 }
+                Trace.WriteLine("wayaround null");
 
                 // Check for image format changes.  The FaceTracker doesn't
                 // deal with that so we need to reset.
@@ -118,6 +127,8 @@ namespace Harley
                     this.ResetFaceTracking();
                     this.depthImage = null;
                     this.depthImageFormat = depthImageFrame.Format;
+                    Trace.WriteLine("depth image fromat no work");
+
                 }
 
                 if (this.colorImageFormat != colorImageFrame.Format)
@@ -125,6 +136,8 @@ namespace Harley
                     this.ResetFaceTracking();
                     this.colorImage = null;
                     this.colorImageFormat = colorImageFrame.Format;
+                    Trace.WriteLine("color image fromat no work");
+
                 }
 
                 // Create any buffers to store copies of the data we work with
@@ -143,28 +156,33 @@ namespace Harley
                 {
                     this.skeletonData = new Skeleton[skeletonFrame.SkeletonArrayLength];
                 }
+                Trace.WriteLine("starting copying of data");
 
                 colorImageFrame.CopyPixelDataTo(this.colorImage);
                 depthImageFrame.CopyPixelDataTo(this.depthImage);
                 skeletonFrame.CopySkeletonDataTo(this.skeletonData);
-
+                Trace.WriteLine("end copying of data");
                 // Update the list of trackers and the trackers with the current frame information
                 foreach (Skeleton skeleton in this.skeletonData)
                 {
+                    Trace.WriteLine("inside foreach loop");
                     if (skeleton.TrackingState == SkeletonTrackingState.Tracked
                         || skeleton.TrackingState == SkeletonTrackingState.PositionOnly)
                     {
+                        Trace.WriteLine("iftracked");
                         // We want keep a record of any skeleton, tracked or untracked.
                         if (!this.trackedSkeletons.ContainsKey(skeleton.TrackingId))
                         {
                             this.trackedSkeletons.Add(skeleton.TrackingId, new SkeletonFaceTracker());
+                            Trace.WriteLine("add skeleton tracking");
                         }
 
                         // Give each tracker the upated frame.
                         SkeletonFaceTracker skeletonFaceTracker;
                         if (this.trackedSkeletons.TryGetValue(skeleton.TrackingId, out skeletonFaceTracker))
                         {
-                            skeletonFaceTracker.OnFrameReady(this.Kinect, colorImageFormat, colorImage, depthImageFormat, depthImage, skeleton);
+                            Trace.WriteLine("before");
+                            skeletonFaceTracker.OnFrameReady(this.Kinect, colorImageFormat, colorImage, depthImageFormat, depthImage, skeleton, this.activityWindow);
                             skeletonFaceTracker.LastTrackedFrame = skeletonFrame.FrameNumber;
                         }
                     }
@@ -194,6 +212,20 @@ namespace Harley
         }
 
         private void OnSensorChanged(KinectSensor oldSensor, KinectSensor newSensor)
+        {
+            if (oldSensor != null)
+            {
+                oldSensor.AllFramesReady -= this.OnAllFramesReady;
+                this.ResetFaceTracking();
+            }
+
+            if (newSensor != null)
+            {
+                newSensor.AllFramesReady += this.OnAllFramesReady;
+            }
+        }
+
+        public void OnSensorChanged2(KinectSensor oldSensor, KinectSensor newSensor)
         {
             if (oldSensor != null)
             {
@@ -262,12 +294,15 @@ namespace Harley
 
             private int count;
 
+            private Speech speech;
+
             private readonly string[] states = { "smiling", "sad", "angry" };
 
             public int LastTrackedFrame { get; set; }
 
             public SkeletonFaceTracker()
             {
+                this.speech = new Speech(null, new string[0]{}, null);
                 currentState = 0;
                 count = 0;
             }
@@ -321,18 +356,78 @@ namespace Harley
             /// <summary>
             /// Updates the face tracking information for this skeleton
             /// </summary>
-            internal void OnFrameReady(KinectSensor kinectSensor, ColorImageFormat colorImageFormat, byte[] colorImage, DepthImageFormat depthImageFormat, short[] depthImage, Skeleton skeletonOfInterest)
+            internal void OnFrameReady(KinectSensor kinectSensor, ColorImageFormat colorImageFormat, byte[] colorImage, DepthImageFormat depthImageFormat, short[] depthImage, Skeleton skeletonOfInterest, FaceRecognitionActivityWindow win)
             {
                 if (CheckFace(kinectSensor, colorImageFormat, colorImage, depthImageFormat, depthImage, skeletonOfInterest))
                 {
                     count++;
                 }
                 else count = 0;
-                if (count == 10)
+                if (count == 1)
                 {
                     count = 0;
                     currentState = (currentState + 1) % 3;
+                    // highlight the next exercise
 
+
+                    if (currentState == 0)
+                    {
+                        Color tileFill = Color.FromRgb(76, 76, 76);
+                        SolidColorBrush brush1 = new SolidColorBrush(tileFill);
+                        win.SadTile.Fill = brush1;
+                        
+
+                        Color focusTileFill = Color.FromRgb(96, 96, 96);
+                        SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
+                        win.HappyTile.Fill = brush2;
+
+                        Color secTileFill = Color.FromRgb(76, 76, 76);
+                        SolidColorBrush brush3 = new SolidColorBrush(tileFill);
+                        win.AngryTile.Fill = brush3;
+
+                        // display the large icon
+                        win.ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\facial\happy_big.png"));
+                        win.ActivityLabel.Content = "Happy";
+                    }
+                    else if (currentState == 1)
+                    {
+                        Color tileFill = Color.FromRgb(96, 96, 96);
+                        SolidColorBrush brush1 = new SolidColorBrush(tileFill);
+                        win.SadTile.Fill = brush1;
+
+                        Color focusTileFill = Color.FromRgb(76, 76, 76);
+                        SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
+                        win.HappyTile.Fill = brush2;
+
+                        Color secTileFill = Color.FromRgb(76, 76, 76);
+                        SolidColorBrush brush3 = new SolidColorBrush(tileFill);
+                        win.AngryTile.Fill = brush3;
+
+                        // display the large icon
+                        win.ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\facial\sad_big.png"));
+                        win.ActivityLabel.Content = "Sad";
+                    }
+                    else if (currentState == 2)
+                    {
+                        Color tileFill = Color.FromRgb(76, 76, 76);
+                        SolidColorBrush brush1 = new SolidColorBrush(tileFill);
+                        win.SadTile.Fill = brush1;
+
+                        Color focusTileFill = Color.FromRgb(76, 76, 76);
+                        SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
+                        win.HappyTile.Fill = brush2;
+
+                        Color secTileFill = Color.FromRgb(96, 96, 96);
+                        SolidColorBrush brush3 = new SolidColorBrush(tileFill);
+                        win.AngryTile.Fill = brush3;
+
+                        // display the large icon
+                        win.ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\facial\angry_big.png"));
+                        win.ActivityLabel.Content = "Angry";
+                    }
+
+
+                    this.speech.SpeakAsync("Moving to next level");
                     // Notify to change face
                     Trace.WriteLine("Change state to: " + states[currentState]);
                 }
@@ -340,7 +435,6 @@ namespace Harley
 
             private bool CheckFace(KinectSensor kinectSensor, ColorImageFormat colorImageFormat, byte[] colorImage, DepthImageFormat depthImageFormat, short[] depthImage, Skeleton skeletonOfInterest)
             {
-
                 this.skeletonTrackingState = skeletonOfInterest.TrackingState;
 
                 if (this.skeletonTrackingState != SkeletonTrackingState.Tracked)
@@ -427,6 +521,7 @@ namespace Harley
 
                         if (states[currentState] == state)
                         {
+                            Trace.WriteLine("Yo!");
                             return true;
                         }
                     }

@@ -225,16 +225,16 @@ namespace Harley
             switch(e.Result.Text)
             {
                 case "star":
-                    window.Close();
                     MainWindow.SwitchToStarActivityWindow();
+                    window.Close();
                     break;
                 case "shape":
-                    window.Close();
                     MainWindow.SwitchToGestureActivityWindow();
+                    window.Close();
                     break;
                 case "facial":
-                    window.Close();
                     MainWindow.SwitchToFaceRecognitionActivityWindow();
+                    window.Close();
                     break;
             }
         }
