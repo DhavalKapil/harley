@@ -37,8 +37,8 @@
         <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,207,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\triangle.png"/>
         <Label Content="Square" Grid.Column="2" HorizontalAlignment="Left" Margin="811,338,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
         <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,294,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\square_big.png"/>
-        <Label x:Name="FacialExpressionLabel_Copy" Content="Hurdle Jump" HorizontalAlignment="Left" Margin="12,269,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="FacialExpressionLabel_MouseDown"/>
-        <Label x:Name="FacialExpressionLabel_Copy1" Content="Karaoke" HorizontalAlignment="Left" Margin="14,318,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="FacialExpressionLabel_MouseDown"/>
-        <Label x:Name="FacialExpressionLabel_Copy2" Content="Dashboard" HorizontalAlignment="Left" Margin="14,665,0,0" VerticalAlignment="Top" Width="112" Foreground="#FFEFEFEF" FontSize="20" FontFamily="Segoe UI" Height="33" MouseDown="FacialExpressionLabel_MouseDown"/>
+        <Label x:Name="HurdleJumpLabel" Content="Hurdle Jump" HorizontalAlignment="Left" Margin="12,269,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="HurdleJumpLabel_MouseDown"/>
+        <Label x:Name="KaraokeLabel" Content="Karaoke" HorizontalAlignment="Left" Margin="14,318,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="KaraokeLabel_MouseDown"/>
+        <Label x:Name="DashboardLabel" Content="Dashboard" HorizontalAlignment="Left" Margin="14,665,0,0" VerticalAlignment="Top" Width="112" Foreground="#FFEFEFEF" FontSize="20" FontFamily="Segoe UI" Height="33" MouseDown="DashboardLabel_MouseDown"/>
     </Grid>
 </Window>
