@@ -13,8 +13,8 @@
         </Grid.ColumnDefinitions>
         <Viewbox Stretch="Uniform" HorizontalAlignment="Center" Grid.ColumnSpan="3" Margin="157,0,91,0" Width="702">
             <Grid>
-                <Rectangle Fill="#FF000000" Stroke="#00000000" Canvas.Top="-8" Margin="-339,-47,-366,-56"/>
-                <Rectangle Fill="#FF212121" Stroke="Black" Width="200" Canvas.Top="-8" Margin="-335,-47,865,-56"/>
+                <Rectangle Fill="#FF000000" Stroke="#00000000" Canvas.Top="-8" Margin="-339,-68,-366,-68"/>
+                <Rectangle Fill="#FF212121" Stroke="Black" Width="200" Canvas.Top="-8" Margin="-335,-66,865,-62"/>
                 <Rectangle Fill="#FF3A3A3A" HorizontalAlignment="Left" Height="556" Margin="-15,110,-264,0" Stroke="Black" VerticalAlignment="Top" Width="1009"/>
                 <Image HorizontalAlignment="Center" Height="470" Margin="269,128,4,0" VerticalAlignment="Top" Width="457" Source="C:\Users\Abhi\Projects\harley\resources\images\hurdle\hurdle.png"/>
                 <Image HorizontalAlignment="Center" Height="64" Margin="808,132,-136,0" VerticalAlignment="Top" Width="58" Source="C:\Users\Abhi\Projects\harley\resources\images\hurdle\timer.png"/>
