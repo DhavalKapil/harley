@@ -97,6 +97,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DashboardActivityWindow.xaml.cs">
+      <DependentUpon>DashboardActivityWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GestureActivityWindow.xaml.cs">
       <DependentUpon>GestureActivityWindow.xaml</DependentUpon>
     </Compile>
@@ -114,6 +117,10 @@
     <Compile Include="StarActivityWindow.xaml.cs">
       <DependentUpon>StarActivityWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="DashboardActivityWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GestureActivityWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
