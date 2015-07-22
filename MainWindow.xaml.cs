@@ -117,7 +117,7 @@ namespace Harley
         }
 
         /// <summary>
-        /// Switches the window to Gesture activity window
+        /// Switches the window to Hurdle Jump activity window
         /// </summary>
         public static void SwitchToHurdleJumpActivityWindow()
         {
@@ -127,13 +127,23 @@ namespace Harley
         }
 
         /// <summary>
-        /// Switches the window to Gesture activity window
+        /// Switches the window to Karaoke activity window
         /// </summary>
         public static void SwitchToKaraokeActivityWindow()
         {
             Window karaokeWindow = new KaraokeActivityWindow();
             App.Current.MainWindow = karaokeWindow;
             karaokeWindow.Show();
+        }
+
+        /// <summary>
+        /// Switches the window to Dashboard activity window
+        /// </summary>
+        public static void SwitchToDashboardActivityWindow()
+        {
+            Window dashboardWindow = new DashboardActivityWindow();
+            App.Current.MainWindow = dashboardWindow;
+            dashboardWindow.Show();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

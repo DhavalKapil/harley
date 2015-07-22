@@ -317,5 +317,11 @@ namespace Harley
             MainWindow.SwitchToKaraokeActivityWindow();
             this.Close();
         }
+
+        private void DashboardLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToDashboardActivityWindow();
+            this.Close();
+        }
     }
 }

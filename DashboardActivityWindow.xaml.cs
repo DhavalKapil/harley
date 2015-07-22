@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Harley
 {
     /// <summary>
-    /// Interaction logic for KaraokeActivityWindow.xaml
+    /// Interaction logic for DashboardActivityWindow.xaml
     /// </summary>
-    public partial class KaraokeActivityWindow : Window
+    public partial class DashboardActivityWindow : Window
     {
-        public KaraokeActivityWindow()
+        public DashboardActivityWindow()
         {
             InitializeComponent();
         }
@@ -49,9 +49,10 @@ namespace Harley
             MainWindow.SwitchToHurdleJumpActivityWindow();
             this.Close();
         }
-        private void DashboardLabel_MouseDown(object sender, MouseButtonEventArgs e)
+
+        private void KaraokeLabel_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow.SwitchToDashboardActivityWindow();
+            MainWindow.SwitchToKaraokeActivityWindow();
             this.Close();
         }
     }
