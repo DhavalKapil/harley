@@ -167,7 +167,7 @@ namespace Harley
         /// <param name="e"></param>
         private void PromptUserForShape(object source, ElapsedEventArgs e)
         {   
-            this.speech.Speak("You can do better. Trying making the shape with your arms as shown on the screen.");
+            //this.speech.Speak("You can do better. Trying making the shape with your arms as shown on the screen.");
         }
 
         /// <summary>

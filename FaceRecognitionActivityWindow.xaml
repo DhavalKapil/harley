@@ -3,6 +3,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+        xmlns:local="clr-namespace:Harley"
         Title="Harley" Height="768" Width="1366"  WindowState="Maximized" WindowStyle="None" >
     <Grid>
         <Grid.ColumnDefinitions>
@@ -22,6 +23,8 @@
                 <Rectangle Fill="#FF75B943" HorizontalAlignment="Left" Height="555" Margin="-15,110,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="465"/>
                 <Image x:Name="ActivityImage" HorizontalAlignment="Left" Height="205" Margin="118,223,0,0" VerticalAlignment="Top" Width="205" Source="C:\Users\Abhi\Projects\harley\resources\images\facial\happy_big.png"/>
                 <Label x:Name="ActivityLabel" Content="Happy" HorizontalAlignment="Left" Margin="158,452,0,0" VerticalAlignment="Top" FontSize="40" Foreground="White"/>
+                <Image Name="ColorImage" Margin="451,116,-162,6"/>
+                <local:FaceTrackingViewer x:Name="faceTrackingViewer" />
             </Grid>
         </Viewbox>
         <Label x:Name="StarJumpLabel" Content="Star Jump" HorizontalAlignment="Left" Margin="12,113,0,0" VerticalAlignment="Top" Width="122" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Background="#00588537" Height="39" MouseDown="StarJumpLabel_MouseDown"/>

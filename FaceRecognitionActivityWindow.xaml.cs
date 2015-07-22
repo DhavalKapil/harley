@@ -14,8 +14,8 @@ namespace Harley
     using System.Windows.Media.Imaging;
     using Microsoft.Kinect;
     using Microsoft.Kinect.Toolkit;
-    using Kinect.Toolbox;
-    using Microsoft.Kinect.Toolkit.FaceTracking;
+    //using Kinect.Toolbox;
+    //using Microsoft.Kinect.Toolkit.FaceTracking;
 
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -25,88 +25,27 @@ namespace Harley
         /// <summary>
         /// The kinect sensor object
         /// </summary>
-        private KinectSensor kinectSensor;
 
         private static readonly int Bgr32BytesPerPixel = (PixelFormats.Bgr32.BitsPerPixel + 7) / 8;
         private readonly KinectSensorChooser sensorChooser = new KinectSensorChooser();
         private WriteableBitmap colorImageWritableBitmap;
         private byte[] colorImageData;
         private ColorImageFormat currentColorImageFormat = ColorImageFormat.Undefined;
-        private FaceTrackingViewer faceTrackingViewer;
-        /// <summary>
-        /// Bitmap that will hold color information
-        /// </summary>
-        private WriteableBitmap colorBitmap;
-
-        /// <summary>
-        /// Intermediate storage for the color data received from the camera
-        /// </summary>
-        private byte[] colorPixels;
 
         public FaceRecognitionActivityWindow()
         {
-            faceTrackingViewer = new FaceTrackingViewer(this);
             Trace.WriteLine("init method start");
             InitializeComponent();
 
-            InitializeKinect(faceTrackingViewer);
+            //InitializeKinect(faceTrackingViewer);
 
-            //var faceTrackingViewerBinding = new Binding("Kinect") { Source = sensorChooser };
-            //faceTrackingViewer.SetBinding(FaceTrackingViewer.KinectProperty, faceTrackingViewerBinding);
+            var faceTrackingViewerBinding = new Binding("Kinect") { Source = sensorChooser };
+            faceTrackingViewer.SetBinding(FaceTrackingViewer.KinectProperty, faceTrackingViewerBinding);
 
-            //sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
+            sensorChooser.KinectChanged += SensorChooserOnKinectChanged;
             Trace.WriteLine("init method");
 
-            //sensorChooser.Start();
-        }
-
-        private void InitializeKinect(FaceTrackingViewer faceTrackingViewer)
-        {
-
-            foreach (var potentialSensor in KinectSensor.KinectSensors)
-            {
-                if (potentialSensor.Status == KinectStatus.Connected)
-                {
-                    this.kinectSensor = potentialSensor;
-                    break;
-                }
-            }
-
-            if (null != this.kinectSensor)
-            {
-                // Turning on skeleton stream
-                this.kinectSensor.SkeletonStream.Enable();
-                //this.kinectSensor.SkeletonFrameReady += this.SensorSkeletonFrameReady;
-
-                // Turn on the color stream to receive color frames
-                //this.kinectSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
-
-                this.kinectSensor.ColorStream.Enable(ColorImageFormat.RgbResolution640x480Fps30);
-                this.kinectSensor.DepthStream.Enable(DepthImageFormat.Resolution320x240Fps30);
-
-                // Allocate space to put the pixels we'll receive
-                this.colorPixels = new byte[this.kinectSensor.ColorStream.FramePixelDataLength];
-
-                // This is the bitmap we'll display on-screen
-                this.colorBitmap = new WriteableBitmap(this.kinectSensor.ColorStream.FrameWidth, this.kinectSensor.ColorStream.FrameHeight, 96.0, 96.0, PixelFormats.Bgr32, null);
-
-                // Set the image we display to point to the bitmap where we'll put the image data
-                this.Image.Source = this.colorBitmap;
-
-                // Add an event handler to be called whenever there is new color frame data
-                this.kinectSensor.AllFramesReady += this.KinectSensorOnAllFramesReady;
-
-                this.kinectSensor.Start();
-            }
-
-            faceTrackingViewer.OnSensorChanged2(this.kinectSensor, this.kinectSensor);
-
-            if (null == this.kinectSensor)
-            {
-                // Connection is failed
-                return;
-            }
-
+            sensorChooser.Start();
         }
 
         private void SensorChooserOnKinectChanged(object sender, KinectChangedEventArgs kinectChangedEventArgs)

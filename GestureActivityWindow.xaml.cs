@@ -108,7 +108,7 @@ namespace Harley
         {
             if (this.levelForTimer == this.currentLevel)
             {
-                this.speech.Speak("You can do better. Try to immitate the symbol using your hand as shown.");
+                //this.speech.Speak("You can do better. Try to immitate the symbol using your hand as shown.");
             }
             else
             { 
@@ -312,7 +312,7 @@ namespace Harley
 
         private void playNextLevel(string level)
         {
-              this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
+              //this.speech.SpeakAsync("A " + level + " is shown, try drawing it by moving your right hand.");
         }
 
         /// <summary>

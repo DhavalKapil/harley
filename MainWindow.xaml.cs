@@ -42,7 +42,7 @@ namespace Harley
 
         public MainWindow()
         {
-            InitializeComponent();           
+            InitializeComponent();
 
             InitializeKinect();
 
@@ -146,6 +146,23 @@ namespace Harley
             dashboardWindow.Show();
         }
 
+        /// <summary>
+        /// Switches the window to About window
+        /// </summary>
+        public static void SwitchToAboutWindow()
+        {
+            Window dashboardWindow = new AboutWindow();
+            App.Current.MainWindow = dashboardWindow;
+            dashboardWindow.Show();
+        }
+
+        public static void SwitchToMainWindow()
+        {
+            Window dashboardWindow = new MainWindow();
+            App.Current.MainWindow = dashboardWindow;
+            dashboardWindow.Show();
+        }
+
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Clean();
@@ -184,6 +201,12 @@ namespace Harley
         private void Image_MouseDown_4(object sender, MouseButtonEventArgs e)
         {
             MainWindow.SwitchToKaraokeActivityWindow();
+            this.Close();
+        }
+
+        private void about_label_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToAboutWindow();
             this.Close();
         }
     }
