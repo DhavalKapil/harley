@@ -218,5 +218,17 @@ namespace Harley
             MainWindow.SwitchToStarActivityWindow();
             this.Close();
         }
+
+        private void HurdleJumpLabel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToHurdleJumpActivityWindow();
+            this.Close();
+        }
+
+        private void KaraokeLabel_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToKaraokeActivityWindow();
+            this.Close();
+        }
     }
 }

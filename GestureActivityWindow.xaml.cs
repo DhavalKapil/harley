@@ -335,5 +335,17 @@ namespace Harley
             MainWindow.SwitchToFaceRecognitionActivityWindow();
             this.Close();
         }
+
+        private void HurdleJumpLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToHurdleJumpActivityWindow();
+            this.Close();
+        }
+
+        private void KaraokeLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToKaraokeActivityWindow();
+            this.Close();
+        }
     }
 }

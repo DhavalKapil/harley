@@ -236,6 +236,14 @@ namespace Harley
                     MainWindow.SwitchToFaceRecognitionActivityWindow();
                     window.Close();
                     break;
+                case "hurdle":
+                    MainWindow.SwitchToHurdleJumpActivityWindow();
+                    window.Close();
+                    break;
+                case "karaoke":
+                    MainWindow.SwitchToKaraokeActivityWindow();
+                    window.Close();
+                    break;
             }
         }
     }

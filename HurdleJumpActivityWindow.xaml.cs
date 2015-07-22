@@ -23,5 +23,31 @@ namespace Harley
         {
             InitializeComponent();
         }
+
+        private void StarJumpLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToStarActivityWindow();
+            //this.speech.StopSpeak();
+            this.Close();
+        }
+
+        private void ShapeDrawingLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToGestureActivityWindow();
+            //this.speech.StopSpeak();
+            this.Close();
+        }
+
+        private void FacialExpressionLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToFaceRecognitionActivityWindow();
+            this.Close();
+        }
+
+        private void KaraokeLabel_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MainWindow.SwitchToKaraokeActivityWindow();
+            this.Close();
+        }
     }
 }
