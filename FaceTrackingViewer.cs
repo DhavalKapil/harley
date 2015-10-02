@@ -386,7 +386,7 @@ namespace Harley
                         win.AngryTile.Fill = brush3;
 
                         // display the large icon
-                        win.ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\facial\happy_big.png"));
+                        win.ActivityImage.Source = new BitmapImage(new Uri(@"happy_big.png"));
                         win.ActivityLabel.Content = "Happy";
                     }
                     else if (currentState == 1)
@@ -404,7 +404,7 @@ namespace Harley
                         win.AngryTile.Fill = brush3;
 
                         // display the large icon
-                        win.ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\facial\sad_big.png"));
+                        win.ActivityImage.Source = new BitmapImage(new Uri(@"sad_big.png"));
                         win.ActivityLabel.Content = "Sad";
                     }
                     else if (currentState == 2)
@@ -422,7 +422,7 @@ namespace Harley
                         win.AngryTile.Fill = brush3;
 
                         // display the large icon
-                        win.ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\facial\angry_big.png"));
+                        win.ActivityImage.Source = new BitmapImage(new Uri(@"angry_big.png"));
                         win.ActivityLabel.Content = "Angry";
                     }
 

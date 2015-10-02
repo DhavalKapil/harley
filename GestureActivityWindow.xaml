@@ -20,7 +20,7 @@
                 <Rectangle Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="555" Margin="880,-14,-254,-1" Stroke="#00000000" VerticalAlignment="Top" Width="104"/>
                 <Rectangle Fill="#FF75B943" HorizontalAlignment="Left" Height="555" Margin="-25,-14,0,-1" Stroke="#00000000" VerticalAlignment="Top" Width="465"/>
                 <Image x:Name="Image" HorizontalAlignment="Left" Height="455" Margin="439,85,-150,0" VerticalAlignment="Top" Width="441"/>
-                <Image x:Name="ActivityImage" HorizontalAlignment="Left" Height="205" Margin="108,99,0,0" VerticalAlignment="Top" Width="205" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\circle_big.png"/>
+                <Image x:Name="ActivityImage" HorizontalAlignment="Left" Height="205" Margin="108,99,0,0" VerticalAlignment="Top" Width="205" Source="circle_big.png"/>
                 <Label x:Name="ActivityLabel" Content="Circle" HorizontalAlignment="Left" Margin="148,328,0,0" VerticalAlignment="Top" FontSize="40" Foreground="White"/>
                 <Canvas x:Name="videoCanvas" HorizontalAlignment="Left" Height="558" Margin="438,138,-149,-156" VerticalAlignment="Top" Width="441"/>
             </Grid>
@@ -29,14 +29,14 @@
         <Label x:Name="ShapeDrawingLabel" Content="Shape Drawing" HorizontalAlignment="Left" Margin="12,162,0,0" VerticalAlignment="Top" Width="150" Foreground="#FF588537" FontSize="22" FontFamily="Segoe UI Light" Height="39"/>
         <Label x:Name="FacialExpressionLabel" Content="Facial Expression" HorizontalAlignment="Left" Margin="12,216,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Grid.ColumnSpan="2" Height="39" MouseDown="FacialExpressionLabel_MouseDown"/>
         <Rectangle x:Name="CircleTile" Grid.Column="2" Fill="#FF606060" HorizontalAlignment="Left" Height="89" Margin="785,106,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,114,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\circle.png"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,114,0,0" VerticalAlignment="Top" Width="49" Source="circle.png"/>
         <Rectangle x:Name="SwipeRightTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,194,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Rectangle x:Name="SwipeLeftTile" Grid.Column="2" Fill="#FF4C4C4C" HorizontalAlignment="Left" Height="89" Margin="785,282,0,0" Stroke="#00000000" VerticalAlignment="Top" Width="97"/>
         <Label Content="Circle" Grid.Column="2" HorizontalAlignment="Left" Margin="812,161,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
         <Label Content="Triangle" Grid.Column="2" HorizontalAlignment="Left" Margin="810,250,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,207,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\triangle.png"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,207,0,0" VerticalAlignment="Top" Width="49" Source="triangle.png"/>
         <Label Content="Square" Grid.Column="2" HorizontalAlignment="Left" Margin="811,338,0,0" VerticalAlignment="Top" Height="29" Foreground="White"/>
-        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,294,0,0" VerticalAlignment="Top" Width="49" Source="C:\Users\Abhi\Projects\harley\resources\images\gestures\square_big.png"/>
+        <Image Grid.Column="2" HorizontalAlignment="Left" Height="44" Margin="811,294,0,0" VerticalAlignment="Top" Width="49" Source="square_big.png"/>
         <Label x:Name="HurdleJumpLabel" Content="Hurdle Jump" HorizontalAlignment="Left" Margin="12,269,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="HurdleJumpLabel_MouseDown"/>
         <Label x:Name="KaraokeLabel" Content="Karaoke" HorizontalAlignment="Left" Margin="14,318,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="KaraokeLabel_MouseDown"/>
         <Label x:Name="DashboardLabel" Content="Dashboard" HorizontalAlignment="Left" Margin="14,665,0,0" VerticalAlignment="Top" Width="112" Foreground="#FFEFEFEF" FontSize="20" FontFamily="Segoe UI" Height="33" MouseDown="DashboardLabel_MouseDown"/>

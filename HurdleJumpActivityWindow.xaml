@@ -22,7 +22,7 @@
                 <Canvas HorizontalAlignment="Left" Height="100" Margin="475,387,0,0" VerticalAlignment="Top" Width="100"/>
 
                 <Image x:Name="Image" HorizontalAlignment="Left" Height="450" Margin="529,159,-243,-12" VerticalAlignment="Top" Width="444"/>
-                <Image HorizontalAlignment="Left" Height="379" Margin="-77,165,0,0" VerticalAlignment="Top" Width="535" gif:ImageBehavior.AnimatedSource="C:\Users\Abhi\Projects\harley\resources\images\hurdle\jump.gif" />
+                <Image HorizontalAlignment="Left" Height="379" Margin="-77,165,0,0" VerticalAlignment="Top" Width="535" gif:ImageBehavior.AnimatedSource="jump.gif" />
             </Grid>
         </Viewbox>
         <Label x:Name="StarJumpLabel" Content="Star Jump" HorizontalAlignment="Left" Margin="12,106,0,0" VerticalAlignment="Top" Width="122" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Background="#00588537" Height="39" MouseDown="StarJumpLabel_MouseDown"/>

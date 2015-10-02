@@ -188,6 +188,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="circleKB.save" />
     <None Include="Harley_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -215,6 +216,48 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="expression_tile.png" />
+    <Resource Include="hurdle_tile.png" />
+    <Resource Include="karaoke_tile.png" />
+    <Resource Include="logo.png" />
+    <Resource Include="main_background.png" />
+    <Resource Include="shapes.png" />
+    <Resource Include="star_jump_tile.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="hurdle.png" />
+    <Resource Include="jump.gif" />
+    <Resource Include="timer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="circle.png" />
+    <Resource Include="circle_big.png" />
+    <Resource Include="left_swipe.png" />
+    <Resource Include="right_swipe.png" />
+    <Resource Include="square_big.png" />
+    <Resource Include="swipe_left_big.png" />
+    <Resource Include="swipe_right_big.png" />
+    <Resource Include="triangle.png" />
+    <Resource Include="triangle_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="angry.png" />
+    <Resource Include="angry_big.png" />
+    <Resource Include="happy.png" />
+    <Resource Include="happy_big.png" />
+    <Resource Include="sad.png" />
+    <Resource Include="sad_big.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="wordplay.wmv" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -24,7 +24,7 @@
         <Label x:Name="HurdleJumpLabel" Content="Hurdle Jump" HorizontalAlignment="Left" Margin="12,269,0,0" VerticalAlignment="Top" Width="175" Foreground="#FFEFEFEF" FontSize="22" FontFamily="Segoe UI Light" Height="39" MouseDown="HurdleJumpLabel_MouseDown"/>
         <Label x:Name="KaraokeLabel" Content="Karaoke" HorizontalAlignment="Left" Margin="14,318,0,0" VerticalAlignment="Top" Width="175" Foreground="#FF588537" FontSize="22" FontFamily="Segoe UI Light" Height="39"/>
         <Label x:Name="DashboardLabel" Content="Dashboard" HorizontalAlignment="Left" Margin="14,665,0,0" VerticalAlignment="Top" Width="112" Foreground="#FFEFEFEF" FontSize="20" FontFamily="Segoe UI" Height="33" MouseDown="DashboardLabel_MouseDown"/>
-        <MediaElement x:Name="mkv" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="516" Margin="67,174,0,0" VerticalAlignment="Top" Width="938" Volume="0" Source="C:\Users\Abhi\Projects\harley\resources\wordplay.wmv"/>
+        <MediaElement x:Name="mkv" Grid.ColumnSpan="2" Grid.Column="1" HorizontalAlignment="Left" Height="516" Margin="67,174,0,0" VerticalAlignment="Top" Width="938" Volume="0" Source="wordplay.wmv"/>
 
     </Grid>
 </Window>

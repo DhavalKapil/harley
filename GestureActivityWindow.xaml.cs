@@ -121,7 +121,7 @@ namespace Harley
         /// </summary>
         private void InitializeKinect()
         {
-           using (Stream recordStream = File.Open(@"C:\Users\Abhi\Projects\harley\data\circleKB.save", FileMode.OpenOrCreate))
+           using (Stream recordStream = File.Open(@"circleKB.save", FileMode.OpenOrCreate))
             {
                 this.circleDetector = new TemplatedGestureDetector("Circle", recordStream);
                 this.circleDetector.DisplayCanvas = videoCanvas;
@@ -280,7 +280,7 @@ namespace Harley
                     SwipeRightTile.Fill = brush2;
 
                     // display the large icon
-                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\triangle_big.png"));
+                    ActivityImage.Source = new BitmapImage(new Uri(@"triangle_big.png"));
                     ActivityLabel.Content = "Triangle";
                 }
                 else if(this.currentLevel == TRIANGLE)
@@ -295,7 +295,7 @@ namespace Harley
                     SolidColorBrush brush2 = new SolidColorBrush(focusTileFill);
                     SwipeLeftTile.Fill = brush2;
 
-                    ActivityImage.Source = new BitmapImage(new Uri(@"C:\Users\Abhi\Projects\harley\resources\images\gestures\square_big.png"));
+                    ActivityImage.Source = new BitmapImage(new Uri(@"square_big.png"));
                     ActivityLabel.Content = "Square";
                 }
 
